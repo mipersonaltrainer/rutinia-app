@@ -6,8 +6,10 @@ const NEW_PASSWORD = "Cielo-Abierto-2026";
 const NEUTRAL = /Si ese correo tiene una cuenta, te enviamos un enlace/;
 const APP = `http://localhost:${process.env.E2E_PORT ?? 3050}`;
 let ipSeq = 0;
-/** A browser context that looks like its own visitor (the app trusts X-Forwarded-For from the hosting proxy), so IP-based limits do not bleed between specs. */
-const visitor = async (browser: Browser) => { const ctx = await browser.newContext({ extraHTTPHeaders: { "x-forwarded-for": `203.0.113.${(Date.now() + ++ipSeq) % 250 + 1}` } }); return { ctx, page: await ctx.newPage() }; };
+/** A browser context that looks like its own visitor — each call gets its own address from a space of ~16 million (the limiter remembers an address for an hour, so neither a clock nor a per-process counter keeps two visitors or two runs apart)  (the app trusts X-Forwarded-For from the hosting proxy), so IP-based limits do not bleed between specs. */
+const visitor = async (browser: Browser) => { const ctx = await browser.newContext({ extraHTTPHeaders: { "x-forwarded-for": (() => { const n = Math.floor(Math.random() * 64000) + 1; return `10.${(n >> 8) + 1}.${n & 255}.${(++ipSeq % 250) + 1}`; })() } }); return { ctx, page: await ctx.newPage() }; };
+/** True once React has attached its handlers to the form: a click before that is a native submit that reloads the page and the server action never runs (slow CI runners hit this). */
+const hydrated = (page: Page) => page.waitForFunction(() => { const f = document.querySelector("form"); return !!f && Object.keys(f).some((k) => k.startsWith("__reactProps")); });
 const wait = (page: Page, ms = 2200) => page.waitForTimeout(ms);              // the forms refuse a submit earlier than AUTH_MIN_FILL_MS (2 s in E2E)
 
 test.describe.configure({ mode: "serial" });
@@ -231,12 +233,12 @@ test.describe("registro de entrenadores", () => {
   test("límite por dirección: el sexto intento en una hora se rechaza, aunque sea de un robot", async ({ browser }) => {
     const { ctx, page } = await visitor(browser); const answers: string[] = [];
     for (let i = 0; i < 6; i++) {
-      await page.goto("/signup"); const name = unique();
+      await page.goto("/signup"); await hydrated(page); const name = unique();
       await page.locator('input[name="website"]').evaluate((e: HTMLInputElement) => { e.value = "x"; });
       await submit(page, name, emailFor(name), "Montaña-Clara-2026");
-      const msg = page.locator('[role="status"], [role="alert"]:not(#__next-route-announcer__)').first(); await expect(msg).toBeVisible(); answers.push((await msg.innerText()).trim());
+      const msg = page.getByText(/Te enviamos un correo para confirmar|Demasiados intentos/).first(); await expect(msg).toBeVisible(); answers.push((await msg.innerText()).trim());
     }
-    expect(answers.slice(0, 5).every((t) => /Te enviamos un correo/.test(t))).toBe(true);
+    expect(answers.slice(0, 5), `answers: ${JSON.stringify(answers)}`).toEqual(Array(5).fill(expect.stringMatching(/Te enviamos un correo/)));
     expect(answers[5]).toMatch(/Demasiados intentos/);
     await ctx.close();
   });
