@@ -1,0 +1,70 @@
+# Formato: Nombre | equipo | nivel(b/i/a) | músculos secundarios | nombres alternativos
+@muscle=chest @pattern=push_horizontal @type=strength
+Press de banca plano con barra | bb | i | triceps,shoulders | Bench press
+Press de banca inclinado con barra | bb | i | shoulders,triceps | Incline bench press
+Press de banca declinado con barra | bb | i | triceps | Decline bench press
+Press de suelo con barra | bb | i | triceps | Floor press con barra
+Press plano con mancuernas | db | b | triceps,shoulders | Dumbbell bench press
+Press inclinado con mancuernas | db | b | shoulders,triceps | Incline dumbbell press
+Press declinado con mancuernas | db | i | triceps | Decline dumbbell press
+Press con mancuernas agarre neutro | db | b | triceps | Press neutro
+Press de suelo con mancuernas | db | b | triceps | Floor press con mancuernas
+Press hexagonal con mancuernas | db | b | triceps | Hex press
+Press inclinado a una mano con mancuerna | db | i | core,shoulders | Single-arm incline press
+Press plano a una mano con mancuerna | db | i | core,triceps | Single-arm flat dumbbell press
+Press declinado a una mano con mancuerna | db | i | core,triceps | Single-arm decline dumbbell press
+Press inclinado con mancuernas agarre neutro | db | b | shoulders,triceps | Neutral-grip incline dumbbell press
+Press plano con mancuernas agarre neutro | db | b | triceps | Neutral-grip flat dumbbell press
+Press de pecho en máquina sentado | mach | b | triceps,shoulders | Chest press machine
+Press de pecho inclinado en máquina | mach | b | shoulders | Incline chest press machine
+Press de banca en máquina Smith | mach | b | triceps,shoulders | Smith bench press
+Press inclinado en máquina Smith | mach | b | shoulders | Smith incline press
+Press declinado en máquina Smith | mach | i | triceps | Smith decline press
+Press de pecho declinado en máquina | mach | b | triceps | Decline chest press machine
+Press de pecho plano en máquina convergente | mach | b | triceps,shoulders | Flat converging chest press
+Press de pecho a una mano en polea | cable | b | core,triceps | Cable chest press
+Press de pecho en polea con split stance | cable | i | core | Press polea escalonado
+Press plano en polea con banco | cable | b | triceps,shoulders | Flat cable bench press
+Press inclinado en polea | cable | i | shoulders,triceps | Incline cable press
+Press declinado en polea | cable | i | triceps | Decline cable press
+Press landmine a una mano | bb | i | shoulders,core | Landmine press
+Press de suelo con kettlebell | kb | b | triceps | Kettlebell floor press
+Press Svend con disco | plate | b | shoulders | Svend press
+Press de pecho con banda | band | b | triceps,shoulders | Band chest press
+Press inclinado con banda | band | b | shoulders,triceps | Incline band press
+Press declinado con banda | band | b | triceps | Decline band press
+Flexiones estándar | bw | b | triceps,shoulders,core | Push-up
+Flexiones con rodillas apoyadas | bw | b | triceps | Knee push-up
+Flexiones con manos elevadas | bw | b | triceps | Incline push-up
+Flexiones con pies elevados | bw | i | shoulders,triceps | Decline push-up
+Flexiones con agarre ancho | bw | i | shoulders | Wide push-up
+Flexiones diamante | bw | i | triceps | Diamond push-up
+Flexiones arqueras | bw | a | triceps,core | Archer push-up
+Flexiones con lastre | bw | a | triceps,core | Weighted push-up
+Flexiones en suspensión | susp | a | core,shoulders | TRX push-up
+Flexiones con banda de resistencia | band | i | triceps,core | Banded push-up
+Flexiones excéntricas lentas | bw | i | triceps | Tempo push-up
+Fondos en paralelas inclinado al frente | bw | i | triceps,shoulders | Chest dip
+Fondos asistidos en máquina | mach | b | triceps | Assisted dip
+@muscle=chest @pattern=isolation @type=strength
+Aperturas con mancuernas en banco plano | db | b | shoulders | Dumbbell fly
+Aperturas inclinadas con mancuernas | db | i | shoulders | Incline fly
+Aperturas declinadas con mancuernas | db | i | shoulders | Decline dumbbell fly
+Aperturas planas en polea con banco | cable | b | shoulders | Flat cable fly
+Aperturas inclinadas en polea | cable | i | shoulders | Incline cable fly
+Aperturas declinadas en polea | cable | i | shoulders | Decline cable fly
+Aperturas inclinadas con banda | band | b | shoulders | Incline band fly
+Cruce de poleas alto a bajo | cable | i | shoulders | Cable crossover
+Cruce de poleas bajo a alto | cable | i | shoulders | Low-to-high cable fly
+Cruce de poleas a la altura del pecho | cable | b | shoulders | Mid cable fly
+Aperturas en máquina peck deck | mach | b | shoulders | Pec deck
+Aperturas con banda de resistencia | band | b | shoulders | Band fly
+Aperturas en suspensión | susp | a | core,shoulders | TRX fly
+Pullover con mancuerna | db | i | back,triceps | Dumbbell pullover
+Pullover en polea alta | cable | i | back | Cable pullover
+Aducción de pecho con disco (squeeze press) | plate | b | triceps | Plate squeeze press
+@muscle=chest @pattern=push_horizontal @type=power
+Lanzamiento de balón medicinal al pecho | med | i | triceps,shoulders | Chest pass
+Flexiones con palmada | bw | a | triceps,shoulders | Clap push-up
+Press de pecho explosivo con banda | band | i | triceps | Explosive band press
+Flexiones con desplazamiento lateral | bw | a | shoulders,core | Side-shift push-up

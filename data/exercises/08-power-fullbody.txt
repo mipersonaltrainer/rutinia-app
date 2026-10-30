@@ -1,0 +1,67 @@
+@muscle=full_body @pattern=jump @type=power
+Salto vertical con contramovimiento | bw | i | quadriceps,glutes,calves | Countermovement jump
+Salto al cajón | bw | i | quadriceps,glutes | Box jump
+Salto al cajón con bajada controlada | bw | i | quadriceps,glutes | Step-down box jump
+Salto en profundidad | bw | a | quadriceps,glutes,calves | Depth jump
+Salto horizontal | bw | i | glutes,hamstrings | Broad jump
+Saltos de vallas bajos | bw | a | calves,quadriceps | Hurdle hop
+Saltos de rana | bw | i | quadriceps,glutes | Frog jump
+Salto con rodillas al pecho | bw | i | quadriceps,core | Tuck jump
+Salto en estrella | bw | b | calves | Star jump
+Salto lateral sobre línea | bw | b | calves,abductors | Lateral line hop
+Salto a una pierna | bw | a | calves,glutes | Single-leg hop
+Salto con sentadilla y mancuernas ligeras | db | i | quadriceps,glutes | Loaded jump squat
+Salto con barra hexagonal | bb | a | glutes,hamstrings | Trap bar jump
+Salto lateral a una pierna (skater) | bw | i | glutes,abductors | Skater jump
+Pliométrico de zancada alterna | bw | a | glutes,quadriceps | Split jump
+Rebotes de tobillo | bw | b | calves | Ankle hop
+@muscle=full_body @pattern=hinge @type=power
+Cargada de potencia con barra | bb | a | back,shoulders,glutes | Power clean
+Cargada colgante con barra | bb | a | back,shoulders,glutes | Hang clean
+Arrancada de potencia con barra | bb | a | shoulders,glutes | Power snatch
+Arrancada con mancuerna a una mano | db | a | shoulders,glutes | Dumbbell snatch
+Arrancada con kettlebell | kb | a | shoulders,glutes | Kettlebell snatch
+Cargada con kettlebell | kb | i | shoulders,glutes | Kettlebell clean
+Cargada y press con kettlebell | kb | i | shoulders,glutes | Kettlebell clean and press
+Cargada y press con mancuernas | db | i | shoulders,glutes | Dumbbell clean and press
+Thruster con barra | bb | i | quadriceps,shoulders | Barbell thruster
+Thruster con mancuernas | db | i | quadriceps,shoulders | Dumbbell thruster
+Thruster con kettlebell | kb | i | quadriceps,shoulders | Kettlebell thruster
+Tirón alto con barra | bb | a | back,shoulders | High pull
+Tirón alto con kettlebell | kb | i | back,shoulders | Kettlebell high pull
+@muscle=full_body @pattern=throw @type=power
+Lanzamiento de balón medicinal sobre la cabeza | med | b | shoulders,core | Overhead throw
+Lanzamiento de balón medicinal contra el suelo | med | b | core,shoulders | Slam ball
+Lanzamiento de balón medicinal hacia atrás | med | i | glutes,back | Backward throw
+Lanzamiento lateral de balón medicinal | med | i | core,glutes | Scoop toss
+Lanzamiento de balón medicinal desde sentadilla | med | i | quadriceps,shoulders | Squat throw
+Golpes de cuerda de batalla alternos | other | i | shoulders,core | Battle rope alternating waves
+Golpes de cuerda de batalla simultáneos | other | i | shoulders,core | Battle rope slams
+Círculos con cuerda de batalla | other | i | shoulders,core | Battle rope circles
+@muscle=full_body @pattern=carry @type=strength
+Paseo del granjero con mancuernas | db | b | forearms,core,back | Farmer carry
+Paseo del granjero con barra hexagonal | bb | i | forearms,core,back | Trap bar carry
+Paseo del granjero con kettlebells | kb | b | forearms,core | Kettlebell farmer carry
+Paseo con mancuerna sobre el hombro | db | i | core,shoulders | Shoulder carry
+Paseo con kettlebell sobre la cabeza | kb | a | shoulders,core | Overhead carry
+Paseo con mancuernas al frente (goblet carry) | db | b | core | Goblet carry
+Paseo en cruz (cross-body carry) | kb | i | core | Cross-body carry
+Paseo de oso con disco al pecho | plate | b | core,shoulders | Plate carry
+Empuje de trineo | other | i | quadriceps,glutes | Sled push
+Empuje de trineo con arnés bajo | other | i | quadriceps,glutes | Low sled push
+Arrastre de trineo hacia atrás | other | i | quadriceps | Backward sled drag
+Arrastre de trineo con cuerda (tirón) | other | i | back,biceps | Rope sled pull
+Paseo de roca/saco al hombro | other | a | core,glutes | Sandbag carry
+Levantamiento de saco desde el suelo | other | i | glutes,back | Sandbag lift
+@muscle=full_body @pattern=squat @type=strength
+Burpee | bw | i | chest,quadriceps | Burpee
+Burpee sin flexión | bw | b | quadriceps | Burpee no push-up
+Sentadilla a press con mancuernas | db | b | shoulders | Squat to press
+Sentadilla a remo con banda | band | b | back | Squat to row
+Sentadilla con salto y toque de suelo | bw | i | calves | Touchdown squat jump
+Turkish get-up con kettlebell | kb | a | shoulders,core | Turkish get-up
+Turkish get-up parcial (a codo) | kb | i | core,shoulders | Half get-up
+Levantamiento de suelo a pie (arrastre de oso a de pie) | bw | b | core | Floor to stand
+Peso muerto a press de mancuernas | db | i | hamstrings,shoulders | Deadlift to press
+Man maker con mancuernas | db | a | back,chest | Man maker
+Rodar y levantarse (roll to stand) | bw | b | core | Roll to stand

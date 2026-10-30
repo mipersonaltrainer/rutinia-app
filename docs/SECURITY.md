@@ -1,0 +1,51 @@
+# Seguridad y accesibilidad — pasada previa a producción
+
+## Qué se revisó
+- **Rutas API y redirecciones**: 7 rutas. Todas las redirecciones tienen destino fijo (sin parámetro `next`/`returnTo`: no hay open redirect). Las rutas de retorno de pago no conceden nada por el redirect: releen la transacción al proveedor y comprueban que el pago es del entrenador autenticado. `/api/cron/expire` compara el secreto en tiempo constante. `/api/export` es `no-store` y registra el acceso.
+- **Uso del cliente admin (service role)**: solo en servidor (invitaciones, webhooks, retornos de pago, cron, exportación/borrado, auditoría). Ningún componente cliente lo importa.
+- **XSS**: el único `dangerouslySetInnerHTML` es el JSON-LD de la portada (`src/components/seo/JsonLd.tsx`): datos construidos por el servidor desde constantes y con `<` escapado, comprobado con una prueba; los mensajes y textos de IA se renderizan como texto.
+- **CSRF**: las acciones de servidor de Next validan el origen; las rutas con cookies usan SameSite=Lax. No se añadió token adicional.
+
+## Cabeceras (next.config.ts, probadas en `tests/security-headers.test.ts`)
+`X-Frame-Options: DENY`, `frame-ancestors 'none'`, `base-uri 'self'`, `object-src 'none'`, `nosniff`, `Referrer-Policy`, `Permissions-Policy` (cámara, micrófono, geolocalización, pago, USB desactivados), COOP `same-origin`, HSTS.
+
+## CSP con nonce (src/lib/csp.ts + src/proxy.ts)
+Cada respuesta de página lleva un nonce nuevo de 128 bits; `script-src 'self' 'nonce-…' 'strict-dynamic'` (sin `unsafe-inline`; `unsafe-eval` solo en `next dev`; `media-src` solo permite el propio origen y el Storage de Supabase para los videos de ejercicios, que viven en un bucket público de solo lectura donde únicamente el servicio puede escribir). Además: `connect-src` = self + Supabase (API y websocket de Realtime), `img-src` = self, data, blob + Supabase (URLs firmadas de fotos), `frame-src/object-src/media-src 'none'`, `form-action` = self + checkout.wompi.co + paypal.com (+ sandbox), `base-uri 'self'`, `frame-ancestors 'none'`, `upgrade-insecure-requests` solo con backend https.
+**Costo**: todas las páginas pasan a renderizado dinámico (el layout raíz lee `headers()`); la landing ya no es estática.
+**Verificado en build de producción, Chrome/panel integrado**: los 12 `<script>` de una respuesta llevan el mismo nonce que su cabecera; login por server action, navegación de 7 secciones del entrenador y mensajes sin ninguna violación; realtime con la CSP activa; URL firmada de Storage carga y una imagen externa se bloquea; un manejador `onerror` y un `javascript:` inyectados no se ejecutan (violaciones `script-src-attr/elem`); service worker se registra; la redirección de pago llega a `checkout.wompi.co` con los parámetros correctos (con llaves de prueba falsas: la página de Wompi respondió error, esperado); el enlace de Jitsi conserva `target=_blank rel="noopener noreferrer"`.
+**No verificado**: flujo PayPal (necesita credenciales), un pago Wompi completo, entrar de verdad a una sala Jitsi/Meet/Zoom, Safari/Firefox, y el resto de pantallas con CSP activa (se auditaron con axe sin CSP). `style-src` conserva `'unsafe-inline'` (atributos `style` de barras/gráficas); no hay endpoint `report-uri`.
+**Despliegue gradual**: `CSP_MODE=report-only` envía la política como `Content-Security-Policy-Report-Only` (el navegador registra, no bloquea). Recomendado en el primer despliegue real mientras se revisa la consola de cada pantalla.
+
+## Accesibilidad (axe-core 4 en navegador real, reglas WCAG 2.0/2.1 A-AA + best-practice)
+Páginas auditadas: landing, login, registro, privacidad, offline; entrenador: panel, alumnos, ficha, mensajes, planes (lista y detalle), ejercicios, facturación, notificaciones, cuenta; alumno: inicio, plan, mensajes, evaluación, privacidad, asistente, fotos, progreso, medidas.
+Hallazgos corregidos: lista de definición inválida (`<p>` dentro de `<dl>`) en compra de cupos; dos `<nav>` sin etiqueta; botón «Cancelar» con contraste 4,33:1 (token `--warn-text`); texto de landing con contraste 4,42:1; enlaces en línea sin subrayado; el layout del alumno no tenía `<main>` ni `<nav>`. Se añadió «Saltar al contenido» en ambos paneles.
+**Límites**: axe detecta ~30–40 % de los problemas; no se probó con lector de pantalla, ni navegación solo con teclado de punta a punta, ni zoom 200 %. Las pantallas que requieren datos que no existen en el demo (registro de entrenamiento en curso, informes, fotos subidas) no se auditaron con contenido real. `/client/workout/[id]` se auditó solo como página de error.
+
+## Higiene de pruebas
+Las suites de integración dejaban ~600 usuarios de prueba que la API de Auth no puede borrar (FK de auditoría/facturación). `tests/setup/purge-test-users.ts` + `scripts/dev/purge-test-users.sql` los eliminan, con sus datos dependientes, antes y después de cada corrida; solo en base local. Quedan únicamente los usuarios demo.
+
+## Pendiente antes de producción real (no hecho)
+CSP con nonce; CAPTCHA y MFA (el límite de intentos propio, la recuperación de contraseña y el filtro antirrobot ya existen: `docs/AUTH.md`); revisión legal de textos (Ley 1581); prueba de penetración; rotación/gestión de secretos; copias de seguridad y plan de recuperación; monitoreo y alertas de webhooks fallidos.
+
+## Sesión (cookies) — actualización de la auditoría de rendimiento
+Las cookies de Supabase se escriben con `httpOnly`, `SameSite=Lax` y `Secure` en HTTPS (`src/lib/supabase/cookies.ts`, aplicado en el cliente de servidor y en el proxy); antes el navegador podía leerlas. Realtime recibe del servidor solo el token de acceso de vida corta. Probado en E2E (`quality.spec.ts`). Ver `docs/PERFORMANCE.md` para lo que sigue expuesto (el token de acceso en el HTML privado).
+
+## Auditoría de seguridad, fase 1: relaciones y rol (migración 0029)
+- **SEC-001 (alta).** Los entrenadores podían crear o reactivar por su cuenta relaciones con cualquier alumno cuyo UUID conocieran (política `rel_trainer_write`), y `can_access_client()` les daba sus datos de salud, fotos y mensajes. Ahora `trainer_client_relationships` no es escribible por usuarios (sin política y sin privilegios de `INSERT`/`UPDATE`/`DELETE`); las relaciones las crea solo el servicio al aceptar una invitación, el entrenador archiva y reactiva con `set_client_relationship_status()` (no puede reactivar si el alumno terminó la relación o ya tiene otro entrenador activo) y el alumno puede terminarla con `end_my_relationship()` (Privacidad).
+- **SEC-002 (media).** `profiles.role` podía cambiarlo el propio usuario. Un trigger (`guard_profile_update`) impide cambiar `role`, `id` y `created_at` a los usuarios; el servicio sigue pudiendo corregirlos.
+- **Pruebas:** `tests/integration/relationship-security.test.ts` (13, con sesiones reales), `e2e/relationship.spec.ts` y `e2e/invitation.spec.ts` (flujo legítimo de invitar y aceptar).
+- **Qué se demostró dinámicamente antes del arreglo:** solo que la inserción de una relación con un alumno ajeno era aceptada (A1). Que de ahí se obtengan datos, fotos o mensajes, y el cambio de rol, se infirió de las políticas y no se reprodujo; ver el informe de auditoría.
+- **Pendiente:** el consentimiento sigue siendo global del alumno (no por entrenador). Los hallazgos SEC-003 a SEC-008 se tratan en la sección siguiente.
+
+## Re-vincular a un alumno que ya tiene cuenta (migración 0030)
+Una invitación a un correo que ya es de un alumno **no crea otra cuenta ni da acceso a la existente**: la página pide iniciar sesión como esa cuenta (el retorno tras el login solo acepta `/invite/<token>`, `src/lib/auth/return-path.ts`) y volver a confirmar los tres consentimientos. `relinkExistingClient()` (`src/lib/invitations/relink.ts`) toma la identidad de la sesión, nunca del formulario ni del token; comprueba cuenta, rol de alumno, que no tenga otro entrenador activo y el cupo antes de consumir la invitación, y la libera si algo falla después. `invitation_context()` solo la puede ejecutar el servicio y no se expone a usuarios. El entrenador que invita no averigua si el correo ya tenía cuenta. Pruebas: `tests/integration/relink.test.ts` (10), `tests/return-path.test.ts` (18) y `e2e/relink.spec.ts`.
+
+## Auditoría de seguridad, fase 2: SEC-003 a SEC-008 (migración 0031)
+- **SEC-003.** Evaluaciones, resultados de cálculo y registros de entrenamiento ya no se escriben desde el navegador (se quitan políticas y privilegios de escritura): lo hace el servidor con la identidad de la sesión, y `start_workout` es `SECURITY DEFINER` con un error unificado. Así no se puede forjar un `risk_level` ni apuntar un registro a la sesión de otro entrenador.
+- **SEC-004.** La exportación del alumno ahora incluye planes de entrenamiento y de nutrición asignados y el registro de quién consultó sus datos. Corregidos dos fallos que la prueba dejó ver: el embed ambiguo de `exercises` (dos claves foráneas) vaciaba los planes en las exportaciones de alumno y entrenador, y el registro de accesos leía una columna inexistente.
+- **SEC-005.** `erase_client` borra también las notificaciones de los entrenadores que nombran o enlazan al alumno.
+- **SEC-006.** La IP para el límite de intentos prefiere `x-vercel-forwarded-for`, luego `x-real-ip` y solo al final el primer salto de `x-forwarded-for`. **Pendiente:** el límite propio no cubre llamadas directas al servicio de Auth de Supabase; activar CAPTCHA y protección contra contraseñas filtradas en el panel de Supabase (no verificado).
+- **SEC-007.** `ai_finish` valida los estados permitidos y que el llamador pueda acceder al alumno.
+- **SEC-008.** Las fotos solo se suben desde el servidor (se elimina `photos_insert` en storage); el tope diario de 10 fotos es también un trigger; las reseñas de fotos solo las ve el entrenador mientras haya acceso y se pueden editar; las notificaciones solo permiten actualizar `read_at`.
+- **Pruebas:** `tests/integration/audit-fixes.test.ts` (11) y adaptaciones en `privacy`, `isolation` y `auth`. **Al aplicar 0031 en la nube hay que desplegar el código inmediatamente después:** el código anterior escribe esas tablas con el cliente del usuario y fallaría.
+- **Sigue pendiente:** consentimiento global (no por entrenador).

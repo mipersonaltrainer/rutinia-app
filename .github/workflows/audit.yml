@@ -1,0 +1,38 @@
+name: Dependency audit
+
+on:
+  push:
+    branches: [main]
+    paths: [package.json, package-lock.json, .github/workflows/audit.yml]
+  pull_request:
+    paths: [package.json, package-lock.json, .github/workflows/audit.yml]
+  schedule:
+    - cron: "17 9 * * 1"        # Mondays: new advisories appear without any code change
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: audit-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    name: npm audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 24
+      # Blocking: anything that ships to production must have no high/critical advisories.
+      - name: Production dependencies (high and critical fail the build)
+        run: npm audit --omit=dev --audit-level=high
+      # Informational: build and test tooling. Reported, never blocking (some fixes need a breaking major upgrade).
+      - name: Development dependencies (report only)
+        continue-on-error: true
+        run: npm audit --audit-level=high

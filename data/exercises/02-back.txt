@@ -1,0 +1,60 @@
+@muscle=back @pattern=pull_vertical @type=strength
+Dominadas pronas | bw | i | biceps,forearms | Pull-up
+Dominadas supinas | bw | i | biceps | Chin-up
+Dominadas con agarre neutro | bw | i | biceps | Neutral-grip pull-up
+Dominadas con agarre ancho | bw | a | biceps,shoulders | Wide-grip pull-up
+Dominadas asistidas en máquina | mach | b | biceps | Assisted pull-up
+Dominadas asistidas con banda | band | b | biceps | Banded pull-up
+Dominadas con lastre | bw | a | biceps,forearms | Weighted pull-up
+Dominadas excéntricas lentas | bw | i | biceps | Negative pull-up
+Jalón al pecho agarre ancho | cable | b | biceps | Lat pulldown
+Jalón al pecho agarre cerrado neutro | cable | b | biceps | Close-grip pulldown
+Jalón al pecho agarre supino | cable | b | biceps | Underhand pulldown
+Jalón a una mano en polea | cable | i | biceps,core | Single-arm pulldown
+Jalón en máquina con agarre dividido | mach | b | biceps | Machine lat pulldown
+Jalón con banda de resistencia | band | b | biceps | Band pulldown
+Jalón tras nuca controlado | cable | a | shoulders | Behind-neck pulldown
+Pulldown de brazos rectos en polea | cable | i | triceps | Straight-arm pulldown
+Dominadas en suspensión (jalón invertido vertical) | susp | i | biceps | TRX vertical pull
+@muscle=back @pattern=pull_horizontal @type=strength
+Remo con barra inclinado | bb | i | biceps,hamstrings,lower_back | Barbell row
+Remo Pendlay | bb | a | biceps,lower_back | Pendlay row
+Remo con barra agarre supino | bb | i | biceps | Underhand barbell row
+Remo con mancuerna a una mano | db | b | biceps | One-arm dumbbell row
+Remo con mancuernas inclinado en banco | db | b | biceps,shoulders | Chest-supported row
+Remo con mancuernas a dos manos inclinado | db | i | biceps,lower_back | Bent-over dumbbell row
+Remo Meadows con landmine | bb | i | biceps,core | Meadows row
+Remo en barra T | bb | i | biceps,lower_back | T-bar row
+Remo en barra T con apoyo de pecho | mach | b | biceps | Chest-supported T-bar row
+Remo en polea baja agarre cerrado | cable | b | biceps | Seated cable row
+Remo en polea baja agarre ancho | cable | b | shoulders,biceps | Wide-grip cable row
+Remo en polea a una mano | cable | b | biceps,core | Single-arm cable row
+Remo en máquina con apoyo de pecho | mach | b | biceps | Machine row
+Remo en máquina Hammer a una mano | mach | b | biceps | Hammer Strength row
+Remo en máquina Smith | mach | i | biceps | Smith row
+Remo invertido en barra baja | bw | b | biceps,core | Inverted row
+Remo en suspensión | susp | b | biceps,core | TRX row
+Remo con banda de resistencia | band | b | biceps | Band row
+Remo con kettlebell a una mano | kb | b | biceps | Kettlebell row
+Remo renegado con mancuernas | db | a | core,biceps | Renegade row
+Remo Seal con barra | bb | a | biceps | Seal row
+Remo con peso corporal en anillas | susp | i | biceps,core | Ring row
+@muscle=back @pattern=isolation @type=strength
+Encogimientos de trapecio con barra | bb | b | forearms | Barbell shrug
+Encogimientos de trapecio con mancuernas | db | b | forearms | Dumbbell shrug
+Encogimientos en máquina Smith | mach | b | forearms | Smith shrug
+Encogimientos en polea baja | cable | b | forearms | Cable shrug
+Face pull en polea | cable | b | shoulders | Face pull
+Face pull con banda | band | b | shoulders | Band face pull
+Retracción escapular en polea | cable | b | shoulders | Scapular row
+Retracción escapular colgado | bw | b | shoulders | Scapular pull-up
+Pájaro a una mano en polea alta | cable | i | shoulders | Rear delt cable fly
+Superman con elevación de brazos | bw | b | lower_back,glutes | Superman
+Elevación en Y tumbado | bw | b | shoulders | Prone Y raise
+Elevación en T tumbado con mancuernas | db | i | shoulders | Prone T raise
+Elevación en W con banda | band | b | shoulders | Band W raise
+Extensión lumbar en banco romano | bw | b | glutes,hamstrings | Back extension
+Extensión lumbar con disco | plate | i | glutes,hamstrings | Weighted back extension
+Extensión lumbar en máquina | mach | b | glutes | Machine back extension
+Buenos días con barra | bb | i | hamstrings,glutes | Good morning
+Remo Kroc con mancuerna | db | a | biceps,forearms | Kroc row

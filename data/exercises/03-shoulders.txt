@@ -1,0 +1,56 @@
+@muscle=shoulders @pattern=push_vertical @type=strength
+Press militar con barra de pie | bb | i | triceps,core | Overhead press
+Press militar con barra sentado | bb | i | triceps | Seated barbell press
+Press tras nuca controlado | bb | a | triceps | Behind-neck press
+Press push con barra | bb | a | triceps,quadriceps | Push press
+Press con mancuernas sentado | db | b | triceps | Seated dumbbell press
+Press con mancuernas de pie | db | b | triceps,core | Standing dumbbell press
+Press Arnold | db | i | triceps | Arnold press
+Press con mancuerna a una mano | db | i | core,triceps | Single-arm press
+Press alterno con mancuernas | db | i | core,triceps | Alternating press
+Press de hombros en máquina | mach | b | triceps | Shoulder press machine
+Press de hombros en máquina Smith | mach | b | triceps | Smith shoulder press
+Press de hombros con kettlebell | kb | b | triceps,core | Kettlebell press
+Press bottoms-up con kettlebell | kb | a | core,forearms | Bottoms-up press
+Press de hombros con banda | band | b | triceps | Band overhead press
+Press de hombros en polea | cable | b | triceps | Cable overhead press
+Press landmine de pie con dos manos | bb | i | triceps,core | Landmine shoulder press
+Press de hombros de rodillas | bb | i | core,triceps | Half-kneeling press
+Flexiones pica | bw | i | triceps | Pike push-up
+Flexiones pica con pies elevados | bw | a | triceps | Elevated pike push-up
+Parada de manos contra la pared | bw | a | triceps,core | Wall handstand hold
+Flexiones en parada de manos asistida | bw | a | triceps,core | Wall handstand push-up
+@muscle=shoulders @pattern=isolation @type=strength
+Elevaciones laterales con mancuernas | db | b | | Lateral raise
+Elevaciones laterales en polea | cable | i | | Cable lateral raise
+Elevaciones laterales en máquina | mach | b | | Machine lateral raise
+Elevaciones laterales con banda | band | b | | Band lateral raise
+Elevaciones laterales inclinado de lado | db | i | | Lean-away lateral raise
+Elevaciones laterales a una mano apoyado | db | b | | Supported lateral raise
+Elevaciones frontales con mancuernas | db | b | chest | Front raise
+Elevaciones frontales con disco | plate | b | chest | Plate front raise
+Elevaciones frontales en polea | cable | b | chest | Cable front raise
+Elevaciones frontales con barra | bb | b | chest | Barbell front raise
+Pájaros con mancuernas inclinado | db | b | back | Bent-over rear delt raise
+Pájaros con mancuernas en banco inclinado | db | b | back | Chest-supported rear delt raise
+Pájaros en máquina peck deck inverso | mach | b | back | Reverse pec deck
+Pájaros en polea cruzada | cable | i | back | Reverse cable fly
+Pájaros con banda | band | b | back | Band reverse fly
+Rotación externa con mancuerna tumbado de lado | db | b | | Side-lying external rotation
+Rotación externa en polea | cable | b | | Cable external rotation
+Rotación externa con banda | band | b | | Band external rotation
+Rotación interna con banda | band | b | chest | Band internal rotation
+Elevación en Y con banda | band | b | back | Band Y raise
+Remo al mentón con barra | bb | i | back,biceps | Upright row
+Remo al mentón con mancuernas | db | i | back | Dumbbell upright row
+Remo al mentón en polea | cable | i | back | Cable upright row
+Remo al mentón con barra Z agarre ancho | bb | i | back | Wide-grip upright row
+Elevación de hombros en Y en polea | cable | i | back | Cable Y raise
+Halo con kettlebell | kb | b | core | Kettlebell halo
+Círculos de brazos con mancuernas ligeras | db | b | | Arm circles weighted
+Press de hombros isométrico en pared | bw | b | triceps | Isometric wall press
+@muscle=shoulders @pattern=stability @type=stability
+Sostén de mancuerna en elevación lateral | db | i | | Lateral raise hold
+Plancha con toque de hombro | bw | b | core | Plank shoulder tap
+Postura de oso con toque de hombro | bw | b | core | Bear shoulder tap
+Desplazamiento de kettlebell en plancha | kb | i | core | Kettlebell drag

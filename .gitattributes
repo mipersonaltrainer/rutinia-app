@@ -1,0 +1,7 @@
+* text=auto eol=lf
+
+# generated: skip in diffs, language stats and review
+data/exercises.generated.json linguist-generated=true -diff
+package-lock.json linguist-generated=true -diff
+*.png binary
+*.webp binary

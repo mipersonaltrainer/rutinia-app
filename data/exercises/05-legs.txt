@@ -1,0 +1,80 @@
+@muscle=quadriceps @pattern=squat @type=strength
+Sentadilla trasera con barra | bb | i | glutes,core,hamstrings | Back squat
+Sentadilla frontal con barra | bb | a | core,glutes | Front squat
+Sentadilla con barra en caja | bb | i | glutes,hamstrings | Box squat
+Sentadilla con pausa | bb | i | glutes,core | Pause squat
+Sentadilla Zercher | bb | a | core,glutes,biceps | Zercher squat
+Sentadilla en máquina Smith | mach | b | glutes | Smith squat
+Sentadilla goblet con mancuerna | db | b | glutes,core | Goblet squat
+Sentadilla goblet con kettlebell | kb | b | glutes,core | Kettlebell goblet squat
+Sentadilla con mancuernas a los lados | db | b | glutes | Dumbbell squat
+Sentadilla al banco | bw | b | glutes | Box squat bodyweight
+Sentadilla con peso corporal | bw | b | glutes,core | Bodyweight squat
+Sentadilla con salto controlado | bw | i | glutes,calves | Squat with soft landing
+Sentadilla isométrica en pared | bw | b | glutes | Wall sit
+Sentadilla sissy | bw | a | | Sissy squat
+Sentadilla con banda en rodillas | band | b | glutes | Banded squat
+Sentadilla en suspensión asistida | susp | b | glutes | TRX squat
+Sentadilla pistol asistida | bw | a | glutes,core | Assisted pistol squat
+Sentadilla pistol | bw | a | glutes,core | Pistol squat
+Sentadilla hack en máquina | mach | b | glutes | Hack squat
+Sentadilla en máquina péndulo | mach | i | glutes | Pendulum squat
+Sentadilla en V-squat | mach | b | glutes | V-squat
+Sentadilla con barra de seguridad | bb | i | glutes,core | Safety bar squat
+Sentadilla overhead con barra | bb | a | shoulders,core | Overhead squat
+Prensa de piernas 45 grados | mach | b | glutes,hamstrings | Leg press
+Prensa de piernas horizontal | mach | b | glutes | Horizontal leg press
+Prensa de piernas a una pierna | mach | i | glutes | Single-leg press
+Extensión de cuádriceps en máquina | mach | b | | Leg extension
+Extensión de cuádriceps a una pierna | mach | b | | Single-leg extension
+Extensión de cuádriceps con banda | band | b | | Band leg extension
+Sentadilla búlgara con mancuernas | db | i | glutes | Bulgarian split squat
+Sentadilla búlgara con barra | bb | a | glutes,core | Barbell Bulgarian split squat
+Sentadilla búlgara con peso corporal | bw | b | glutes | Bodyweight Bulgarian split squat
+Sentadilla split estática con mancuernas | db | b | glutes | Split squat
+Step-up al cajón con mancuernas | db | b | glutes | Dumbbell step-up
+Step-up lateral al cajón | bw | b | glutes,abductors | Lateral step-up
+Step-up con rodilla arriba | bw | b | glutes,core | Step-up knee drive
+@muscle=quadriceps @pattern=lunge @type=strength
+Zancada caminando con mancuernas | db | b | glutes,hamstrings | Walking lunge
+Zancada hacia atrás con mancuernas | db | b | glutes | Reverse lunge
+Zancada hacia atrás con barra | bb | i | glutes,core | Barbell reverse lunge
+Zancada frontal con peso corporal | bw | b | glutes | Forward lunge
+Zancada lateral con mancuerna | db | b | glutes,adductors | Lateral lunge
+Zancada cruzada (curtsy) | bw | b | glutes,abductors | Curtsy lunge
+Zancada deslizante hacia atrás | bw | b | glutes | Sliding reverse lunge
+Zancada en máquina Smith | mach | b | glutes | Smith lunge
+Zancada con kettlebell en rack | kb | i | glutes,core | Racked kettlebell lunge
+Zancada con salto alterno | bw | a | glutes,calves | Jump lunge
+@muscle=hamstrings @pattern=hinge @type=strength
+Peso muerto convencional | bb | i | glutes,back,forearms | Deadlift
+Peso muerto sumo | bb | i | glutes,adductors,back | Sumo deadlift
+Peso muerto rumano con barra | bb | i | glutes,back | Romanian deadlift
+Peso muerto rumano con mancuernas | db | b | glutes | Dumbbell Romanian deadlift
+Peso muerto con piernas rígidas | bb | i | glutes,back | Stiff-leg deadlift
+Peso muerto a una pierna con mancuerna | db | i | glutes,core | Single-leg RDL
+Peso muerto a una pierna con kettlebell | kb | i | glutes,core | Kettlebell single-leg RDL
+Peso muerto con barra hexagonal | bb | b | quadriceps,glutes | Trap bar deadlift
+Peso muerto con déficit | bb | a | glutes,back | Deficit deadlift
+Peso muerto desde bloques | bb | i | glutes,back | Block pull
+Peso muerto con banda | band | b | glutes | Banded deadlift
+Peso muerto en máquina Smith | mach | b | glutes | Smith deadlift
+Buenos días con banda | band | b | glutes,back | Banded good morning
+Swing con kettlebell | kb | i | glutes,core | Kettlebell swing
+Swing con kettlebell a una mano | kb | i | glutes,core | One-arm kettlebell swing
+Swing americano con kettlebell | kb | a | glutes,shoulders | American kettlebell swing
+Bisagra de cadera con bastón | bw | b | glutes | Hip hinge dowel
+@muscle=hamstrings @pattern=isolation @type=strength
+Curl femoral tumbado en máquina | mach | b | calves | Lying leg curl
+Curl femoral sentado en máquina | mach | b | calves | Seated leg curl
+Curl femoral de pie a una pierna | mach | b | | Standing leg curl
+Curl femoral con balón suizo | other | i | glutes | Swiss ball leg curl
+Curl femoral deslizante | bw | i | glutes | Slider leg curl
+Curl femoral con banda | band | b | | Band leg curl
+Curl femoral en suspensión | susp | i | glutes | TRX hamstring curl
+Curl nórdico | bw | a | glutes | Nordic hamstring curl
+Curl nórdico asistido con banda | band | i | glutes | Assisted Nordic curl
+Curl femoral con mancuerna entre los pies | db | b | | Dumbbell leg curl
+Curl femoral en polea | cable | b | | Cable leg curl
+Elevación de glúteo e isquios en banco GHD | bw | a | glutes,back | Glute-ham raise
+Puente de isquios con talones elevados | bw | b | glutes | Heel-elevated bridge

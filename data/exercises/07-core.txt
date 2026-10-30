@@ -1,0 +1,80 @@
+@muscle=core @pattern=core_flexion @type=strength
+Crunch abdominal | bw | b | | Crunch
+Crunch inverso | bw | b | | Reverse crunch
+Crunch en polea alta de rodillas | cable | i | | Cable crunch
+Crunch en máquina | mach | b | | Machine crunch
+Crunch con piernas elevadas | bw | b | | Legs-up crunch
+Crunch bicicleta | bw | b | | Bicycle crunch
+Crunch con balón medicinal | med | b | | Medicine ball crunch
+Elevación de piernas tumbado | bw | b | hip_flexors | Lying leg raise
+Elevación de piernas colgado | bw | i | hip_flexors,forearms | Hanging leg raise
+Elevación de rodillas colgado | bw | b | hip_flexors,forearms | Hanging knee raise
+Elevación de rodillas en silla romana | bw | b | hip_flexors | Captain's chair knee raise
+Elevación de piernas en silla romana | bw | i | hip_flexors | Captain's chair leg raise
+Toes-to-bar | bw | a | hip_flexors,back | Toes to bar
+Abdominal en V (V-up) | bw | i | hip_flexors | V-up
+Abdominal navaja con banda | band | i | hip_flexors | Banded jackknife
+Sit-up con control | bw | b | hip_flexors | Sit-up
+Sit-up con disco al pecho | plate | i | hip_flexors | Weighted sit-up
+Sit-up declinado | bw | i | hip_flexors | Decline sit-up
+Rueda abdominal de rodillas | other | i | shoulders,back | Ab wheel rollout
+Rueda abdominal de pie | other | a | shoulders,back | Standing ab rollout
+Rollout con barra | bb | a | shoulders | Barbell rollout
+Rollout en suspensión (fallout) | susp | i | shoulders | TRX fallout
+Mountain climbers | bw | b | shoulders,quadriceps | Mountain climber
+Encogimiento de rodillas en suspensión (pike) | susp | a | shoulders,hip_flexors | TRX pike
+Dragon flag progresión | bw | a | back,hip_flexors | Dragon flag
+@muscle=core @pattern=core_stability @type=isometric
+Plancha frontal | bw | b | shoulders | Plank
+Plancha frontal con codos elevados en banco | bw | b | shoulders | Incline plank
+Plancha sobre manos | bw | b | shoulders | High plank
+Plancha con balanceo (RKC) | bw | i | glutes,shoulders | RKC plank
+Plancha con elevación de pierna | bw | i | glutes | Plank leg lift
+Plancha con elevación de brazo | bw | i | shoulders | Plank arm reach
+Plancha con arrastre de disco | plate | i | shoulders | Plank plate drag
+Plancha en suspensión | susp | i | shoulders | TRX plank
+Plancha con pies en deslizadores | bw | a | shoulders | Slider plank
+Plancha lateral | bw | b | abductors | Side plank
+Plancha lateral con elevación de pierna | bw | i | abductors | Side plank leg raise
+Plancha lateral con rotación | bw | i | shoulders | Side plank rotation
+Plancha lateral con rodillas | bw | b | abductors | Knee side plank
+Hollow hold | bw | i | hip_flexors | Hollow body hold
+Hollow rock | bw | i | hip_flexors | Hollow rock
+Bird dog | bw | b | glutes,back | Bird dog
+Bird dog con banda | band | i | glutes,back | Banded bird dog
+Dead bug | bw | b | hip_flexors | Dead bug
+Dead bug con balón medicinal | med | i | hip_flexors | Medicine ball dead bug
+Dead bug con banda | band | i | hip_flexors | Banded dead bug
+Superman isométrico | bw | b | back,glutes | Superman hold
+Plancha inversa | bw | i | glutes,back | Reverse plank
+Arrastre de kettlebell en plancha | kb | i | shoulders | Kettlebell plank drag
+Caminata de oso | bw | i | shoulders | Bear crawl
+Arrastre de trineo con agarre bajo | other | i | glutes,quadriceps | Sled drag
+@muscle=core @pattern=core_rotation @type=strength
+Giro ruso con disco | plate | b | | Russian twist
+Giro ruso con balón medicinal | med | b | | Medicine ball Russian twist
+Leñador en polea alto a bajo | cable | b | shoulders | Cable chop
+Leñador en polea bajo a alto | cable | b | shoulders | Cable lift
+Leñador con banda | band | b | shoulders | Band chop
+Rotación de tronco en polea | cable | b | | Cable rotation
+Rotación de tronco en máquina | mach | b | | Machine torso rotation
+Lanzamiento rotacional de balón medicinal | med | i | shoulders,glutes | Rotational throw
+Toque de talones alterno | bw | b | | Heel touch
+Rotación con landmine | bb | i | shoulders | Landmine rotation
+@muscle=core @pattern=core_stability @type=stability
+Pallof press de pie | cable | b | shoulders | Pallof press
+Pallof press de rodillas | cable | b | shoulders | Half-kneeling Pallof press
+Pallof press con banda | band | b | shoulders | Band Pallof press
+Pallof press con paso lateral | cable | i | glutes | Pallof walkout
+Pallof press con rotación | cable | i | shoulders | Pallof press with rotation
+Anti-rotación con banda isométrica | band | b | | Isometric anti-rotation
+Remo anti-rotación en polea | cable | i | back | Anti-rotation row
+@muscle=core @pattern=core_lateral @type=strength
+Flexión lateral con mancuerna | db | b | | Dumbbell side bend
+Flexión lateral en banco romano | bw | i | | Roman chair side bend
+Flexión lateral en polea | cable | b | | Cable side bend
+Paseo de maleta con una mancuerna | db | b | forearms,glutes | Suitcase carry
+Paseo de maleta con kettlebell | kb | b | forearms,glutes | Kettlebell suitcase carry
+Paseo con kettlebell en rack a una mano | kb | i | shoulders | Racked carry
+Elevación lateral de piernas en banco | bw | i | abductors | Side leg raise bench
+Windshield wipers tumbado | bw | a | hip_flexors | Windshield wipers

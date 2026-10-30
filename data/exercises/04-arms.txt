@@ -1,0 +1,70 @@
+@muscle=biceps @pattern=isolation @type=strength
+Curl con barra recta de pie | bb | b | forearms | Barbell curl
+Curl con barra Z | bb | b | forearms | EZ-bar curl
+Curl con barra Z agarre ancho | bb | b | | Wide-grip EZ curl
+Curl con barra Z agarre cerrado | bb | b | | Close-grip EZ curl
+Curl con mancuernas alterno | db | b | forearms | Alternating dumbbell curl
+Curl con mancuernas simultáneo | db | b | forearms | Dumbbell curl
+Curl martillo | db | b | forearms | Hammer curl
+Curl martillo cruzado | db | b | forearms | Cross-body hammer curl
+Curl inclinado con mancuernas | db | i | | Incline dumbbell curl
+Curl concentrado | db | b | | Concentration curl
+Curl en banco Scott con barra Z | bb | i | | Preacher curl
+Curl en banco Scott con mancuerna | db | i | | Dumbbell preacher curl
+Curl en máquina Scott | mach | b | | Machine preacher curl
+Curl araña en banco inclinado | db | i | | Spider curl
+Curl Zottman | db | i | forearms | Zottman curl
+Curl en polea baja con barra | cable | b | | Cable curl
+Curl en polea a una mano | cable | b | | Single-arm cable curl
+Curl en polea alta (doble bíceps) | cable | i | | Cable double biceps curl
+Curl con banda de resistencia | band | b | | Band curl
+Curl con kettlebell en cuerno | kb | b | forearms | Kettlebell horn curl
+Curl 21 con barra | bb | i | | 21s curl
+Curl con agarre de disco | plate | b | forearms | Plate curl
+Curl invertido con barra | bb | b | forearms | Reverse curl
+Curl en TRX | susp | i | | TRX biceps curl
+Curl isométrico en barra baja | bw | b | | Isometric bar curl
+Curl en máquina sentado | mach | b | | Machine biceps curl
+Curl con arrastre de barra | bb | i | | Drag curl
+@muscle=triceps @pattern=isolation @type=strength
+Extensión de tríceps en polea con cuerda | cable | b | | Rope pushdown
+Extensión de tríceps en polea con barra recta | cable | b | | Straight-bar pushdown
+Extensión de tríceps en polea con barra V | cable | b | | V-bar pushdown
+Extensión de tríceps a una mano en polea | cable | b | | Single-arm pushdown
+Extensión de tríceps por encima de la cabeza en polea | cable | i | | Cable overhead extension
+Extensión de tríceps con banda | band | b | | Band pushdown
+Extensión de tríceps por encima de la cabeza con banda | band | b | | Band overhead extension
+Press francés con barra Z | bb | i | | Skull crusher
+Press francés con mancuernas | db | i | | Dumbbell skull crusher
+Press francés en banco inclinado | bb | i | | Incline skull crusher
+Extensión de tríceps con mancuerna a dos manos sobre la cabeza | db | b | | Overhead dumbbell extension
+Extensión de tríceps con mancuerna a una mano sobre la cabeza | db | b | | Single-arm overhead extension
+Patada de tríceps con mancuerna | db | b | | Triceps kickback
+Patada de tríceps en polea | cable | b | | Cable kickback
+Extensión de tríceps en máquina | mach | b | | Machine triceps extension
+Fondos de tríceps en banco | bw | b | chest,shoulders | Bench dip
+Fondos de tríceps en paralelas | bw | i | chest,shoulders | Triceps dip
+Fondos de tríceps con lastre | bw | a | chest | Weighted dip
+Extensión de tríceps en suspensión | susp | i | core | TRX triceps extension
+Extensión de tríceps tumbado con banda | band | b | | Lying band extension
+Extensión de tríceps en el suelo con barra | bb | b | | Floor skull crusher
+@muscle=triceps @pattern=push_horizontal @type=strength
+Press de banca agarre cerrado con barra | bb | i | chest,shoulders | Close-grip bench press
+Press de banca agarre cerrado con mancuernas | db | b | chest | Close-grip dumbbell press
+Flexiones cerradas | bw | b | chest | Close-grip push-up
+Flexiones de tríceps con codos pegados | bw | b | chest | Tricep push-up
+Press JM con barra | bb | a | chest | JM press
+Press en Smith agarre cerrado | mach | b | chest | Smith close-grip press
+@muscle=forearms @pattern=isolation @type=strength
+Curl de muñeca con barra | bb | b | | Wrist curl
+Curl de muñeca con mancuerna | db | b | | Dumbbell wrist curl
+Extensión de muñeca con barra | bb | b | | Wrist extension
+Extensión de muñeca con mancuerna | db | b | | Dumbbell wrist extension
+Giro de muñeca con mancuerna (pronosupinación) | db | b | | Pronation-supination
+Desviación radial con mancuerna | db | b | | Radial deviation
+Sostén de agarre colgado en barra | bw | b | back | Dead hang
+Sostén de discos con pinza | plate | b | | Plate pinch hold
+Rodillo de muñeca con disco | other | i | shoulders | Wrist roller
+Paseo del granjero con agarre grueso | db | i | core,back | Thick-grip farmer carry
+Curl de dedos con barra | bb | b | | Finger curl
+Aplastamiento con pelota de agarre | other | b | | Grip squeeze

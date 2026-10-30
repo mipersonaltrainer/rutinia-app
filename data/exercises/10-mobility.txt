@@ -1,0 +1,69 @@
+@muscle=hips @pattern=mobility @type=mobility
+Estiramiento de flexor de cadera de rodillas | bw | b | hip_flexors,quadriceps | Half-kneeling hip flexor stretch
+Estiramiento del psoas con elevación de brazo | bw | b | hip_flexors | Psoas stretch reach
+Postura de la paloma | bw | b | glutes | Pigeon pose
+Postura 90/90 con transiciones | bw | i | glutes | 90/90 hip switches
+Postura del niño con rotación | bw | b | back | Child's pose reach
+Gato-camello | bw | b | spine | Cat-cow
+Estiramiento de aductores en mariposa | bw | b | adductors | Butterfly stretch
+Estiramiento de aductores con balanceo (rock back) | bw | b | adductors | Adductor rock-back
+Sentadilla profunda con sostén (malasana) | bw | b | glutes,calves | Deep squat hold
+Sentadilla profunda con apertura de codos | bw | b | adductors | Prying goblet squat
+Círculos de cadera en cuadrupedia | bw | b | glutes | Hip circles
+Paseo del escarabajo (inchworm) | bw | b | hamstrings,shoulders | Inchworm
+Zancada profunda con rotación de tronco | bw | b | spine,hip_flexors | World's greatest stretch
+Estiramiento de isquiotibiales tumbado con banda | band | b | hamstrings | Supine hamstring stretch
+Estiramiento de isquiotibiales de pie | bw | b | hamstrings | Standing hamstring stretch
+Estiramiento de glúteo en figura 4 | bw | b | glutes | Figure-four stretch
+Estiramiento de cuádriceps de pie | bw | b | quadriceps | Standing quad stretch
+Estiramiento de cuádriceps en el suelo | bw | i | quadriceps | Couch stretch
+Estiramiento de banda iliotibial con cruce | bw | b | abductors | IT band stretch
+Estiramiento de pantorrilla en pared | bw | b | calves | Wall calf stretch
+Estiramiento de sóleo con rodilla flexionada | bw | b | calves | Soleus stretch
+Movilidad de tobillo con rodilla a pared | bw | b | calves | Ankle knee-to-wall
+Círculos de tobillo | bw | b | calves | Ankle circles
+Movilidad de dedos de pie y planta | other | b | calves | Foot mobility
+Liberación miofascial de planta con pelota | other | b | calves | Foot rolling
+Liberación miofascial de cuádriceps con rodillo | other | b | quadriceps | Foam roll quads
+Liberación miofascial de glúteo con pelota | other | b | glutes | Glute ball release
+Liberación miofascial de dorsal con rodillo | other | b | back | Foam roll lats
+@muscle=spine @pattern=mobility @type=mobility
+Rotación torácica en cuadrupedia | bw | b | shoulders | Thread the needle
+Rotación torácica tumbado de lado (libro abierto) | bw | b | shoulders | Open book
+Extensión torácica sobre rodillo | other | b | back | Thoracic extension roller
+Extensión torácica sentado en silla | bw | b | back | Seated thoracic extension
+Rotación de columna sentado | bw | b | core | Seated spinal twist
+Torsión de columna tumbado con rodillas | bw | b | core | Supine twist
+Postura de la cobra suave | bw | b | core | Cobra stretch
+Postura del puente con apertura de pecho | bw | i | shoulders,glutes | Chest-opening bridge
+Estiramiento del cuadrado lumbar lateral | bw | b | core | Quadratus stretch
+Movilidad de cuello en flexión y extensión | bw | b | | Neck flexion extension
+Rotación de cuello controlada | bw | b | | Neck rotation
+Inclinación lateral de cuello | bw | b | | Neck side tilt
+Retracción cervical (mentón atrás) | bw | b | | Chin tuck
+Estiramiento de trapecio superior | bw | b | | Upper trap stretch
+Estiramiento del elevador de la escápula | bw | b | | Levator scapulae stretch
+@muscle=shoulders @pattern=mobility @type=mobility
+Círculos de hombro con bastón (pass-through) | band | b | chest | Band pass-through
+Estiramiento de pecho en marco de puerta | bw | b | chest | Doorway chest stretch
+Estiramiento del dorsal con apoyo en banco | bw | b | back | Bench lat stretch
+Estiramiento de hombro posterior cruzado | bw | b | back | Cross-body shoulder stretch
+Estiramiento de tríceps sobre la cabeza | bw | b | triceps | Overhead triceps stretch
+Estiramiento de bíceps con brazo en pared | bw | b | biceps | Wall biceps stretch
+Estiramiento de antebrazo en flexión | bw | b | forearms | Wrist flexor stretch
+Estiramiento de antebrazo en extensión | bw | b | forearms | Wrist extensor stretch
+Deslizamiento escapular en pared | bw | b | back | Wall slide
+Rotación de hombro con bastón | other | b | | Stick shoulder rotation
+Colgado pasivo con movilidad de hombro | bw | b | back | Passive hang
+Círculos de brazos amplios | bw | b | | Big arm circles
+Sleeper stretch | bw | i | | Sleeper stretch
+@muscle=full_body @pattern=mobility @type=mobility
+Secuencia de saludo al sol | bw | b | hamstrings,shoulders | Sun salutation
+Perro boca abajo con pedaleo | bw | b | calves,hamstrings | Downward dog pedal
+Postura de la tabla a cobra | bw | b | core | Plank to cobra
+Escorpión tumbado | bw | b | glutes,back | Scorpion stretch
+Movilidad en cuadrupedia con balanceo | bw | b | hips | Quadruped rocking
+Caminata de cangrejo | bw | i | shoulders,glutes | Crab walk
+Giro y alcance en media rodilla | bw | b | spine | Half-kneeling windmill
+Molino con kettlebell | kb | a | shoulders,hamstrings | Kettlebell windmill
+Apertura de cadera y tobillo en sentadilla con peso | kb | b | adductors | Weighted deep squat pry

@@ -1,0 +1,36 @@
+@muscle=cardio @pattern=locomotion @type=cardio
+Carrera continua suave en cinta | cardio | b | quadriceps,calves | Treadmill jog
+Carrera a intervalos en cinta | cardio | i | quadriceps,calves | Treadmill intervals
+Caminata inclinada en cinta | cardio | b | glutes,calves | Incline walk
+Caminata rápida al aire libre | bw | b | calves | Brisk walk
+Carrera continua al aire libre | bw | b | quadriceps,calves | Outdoor run
+Carrera de cuestas | bw | i | glutes,quadriceps | Hill repeats
+Carrera de velocidad 30 m | bw | a | hamstrings,glutes | Sprint 30m
+Fartlek | bw | i | quadriceps | Fartlek
+Carrera de lanzadera | bw | i | quadriceps,calves | Shuttle run
+Bicicleta estática ritmo continuo | cardio | b | quadriceps | Stationary bike steady
+Bicicleta estática intervalos | cardio | i | quadriceps | Stationary bike intervals
+Bicicleta de aire (assault bike) | cardio | i | shoulders,quadriceps | Assault bike
+Spinning en bicicleta | cardio | i | quadriceps,glutes | Indoor cycling
+Ciclismo al aire libre | other | b | quadriceps | Outdoor cycling
+Elíptica ritmo continuo | cardio | b | quadriceps,glutes | Elliptical steady
+Elíptica con resistencia por intervalos | cardio | i | quadriceps,glutes | Elliptical intervals
+Remo en ergómetro continuo | cardio | b | back,quadriceps | Rowing machine steady
+Remo en ergómetro por intervalos | cardio | i | back,quadriceps | Rowing intervals
+Escaladora (stair climber) | cardio | i | glutes,quadriceps | Stair climber
+Subida de escaleras | bw | b | glutes,quadriceps | Stair climb
+Esquiadora (SkiErg) | cardio | i | back,shoulders | SkiErg
+Natación continua | other | b | back,shoulders | Swimming laps
+Natación por intervalos | other | i | back,shoulders | Swimming intervals
+Comba a ritmo constante | other | b | calves,shoulders | Jump rope steady
+Comba doble salto | other | a | calves,shoulders | Double unders
+Saltos de tijera (jumping jacks) | bw | b | calves,shoulders | Jumping jacks
+Rodillas altas en el sitio | bw | b | quadriceps,calves | High knees
+Talones al glúteo en el sitio | bw | b | hamstrings | Butt kicks
+Boxeo de sombra | bw | b | shoulders,core | Shadow boxing
+Golpeo de saco de boxeo | other | i | shoulders,core | Heavy bag work
+Circuito de peso corporal de baja intensidad | bw | b | core | Low-intensity bodyweight circuit
+Intervalos tabata de peso corporal | bw | i | quadriceps,core | Bodyweight tabata
+Remo de resistencia en suspensión | susp | i | back | TRX conditioning
+Caminata nórdica | other | b | shoulders,back | Nordic walking
+Baile aeróbico | bw | b | calves | Dance cardio

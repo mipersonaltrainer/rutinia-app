@@ -1,0 +1,62 @@
+@muscle=glutes @pattern=hinge @type=strength
+Hip thrust con barra | bb | i | hamstrings | Barbell hip thrust
+Hip thrust con mancuerna | db | b | hamstrings | Dumbbell hip thrust
+Hip thrust en máquina | mach | b | hamstrings | Machine hip thrust
+Hip thrust a una pierna | bw | i | hamstrings,core | Single-leg hip thrust
+Hip thrust con banda | band | b | hamstrings | Banded hip thrust
+Hip thrust en máquina Smith | mach | b | hamstrings | Smith hip thrust
+Puente de glúteo con peso corporal | bw | b | hamstrings | Glute bridge
+Puente de glúteo con banda | band | b | hamstrings | Banded glute bridge
+Puente de glúteo a una pierna | bw | b | hamstrings,core | Single-leg glute bridge
+Puente de glúteo con pausa | bw | b | hamstrings | Paused glute bridge
+Puente de glúteo con barra | bb | i | hamstrings | Barbell glute bridge
+Patada de glúteo en polea | cable | b | hamstrings | Cable glute kickback
+Patada de glúteo en máquina | mach | b | hamstrings | Machine glute kickback
+Patada de glúteo en cuadrupedia | bw | b | core | Quadruped kickback
+Patada de glúteo con banda | band | b | core | Banded kickback
+Patada de burro con mancuerna | db | b | core | Donkey kick weighted
+Hidrante de cadera (fire hydrant) | bw | b | abductors | Fire hydrant
+Hidrante de cadera con banda | band | b | abductors | Banded fire hydrant
+Pull-through en polea | cable | b | hamstrings | Cable pull-through
+Extensión de cadera inversa en banco | bw | i | back,hamstrings | Reverse hyperextension
+Extensión de cadera inversa en máquina | mach | i | back,hamstrings | Machine reverse hyper
+Sentadilla sumo con mancuerna | db | b | adductors,quadriceps | Sumo squat
+Sentadilla sumo con kettlebell | kb | b | adductors,quadriceps | Kettlebell sumo squat
+Sentadilla sumo con banda | band | b | adductors | Banded sumo squat
+Zancada reversa con énfasis en glúteo | db | i | quadriceps | Glute-focused reverse lunge
+Step-up alto con énfasis en glúteo | db | b | quadriceps | High step-up
+Caminata lateral con banda | band | b | abductors | Banded lateral walk
+Caminata de monstruo con banda | band | b | abductors | Monster walk
+Almeja con banda (clamshell) | band | b | abductors | Banded clamshell
+Almeja sin resistencia | bw | b | abductors | Clamshell
+@muscle=glutes @pattern=isolation @type=strength
+Abducción de cadera en máquina | mach | b | abductors | Hip abduction machine
+Abducción de cadera en polea | cable | b | abductors | Cable hip abduction
+Abducción de cadera de lado tumbado | bw | b | abductors | Side-lying leg raise
+Abducción de cadera de pie con banda | band | b | abductors | Standing banded abduction
+Elevación lateral de pierna con tobillera | other | b | abductors | Weighted side leg raise
+Rotación externa de cadera en 90/90 activa | bw | b | hips | 90/90 external rotation
+@muscle=adductors @pattern=isolation @type=strength
+Aducción de cadera en máquina | mach | b | | Hip adduction machine
+Aducción de cadera en polea | cable | b | | Cable hip adduction
+Aducción de cadera tumbado de lado | bw | b | | Side-lying adduction
+Squeeze de balón entre rodillas | other | b | core | Ball squeeze
+Plancha de Copenhague | bw | a | core | Copenhagen plank
+Plancha de Copenhague con rodilla flexionada | bw | i | core | Short-lever Copenhagen
+Deslizamiento lateral con deslizadores | bw | i | glutes | Slider lateral slide
+@muscle=calves @pattern=isolation @type=strength
+Elevación de talones de pie en máquina | mach | b | | Standing calf raise
+Elevación de talones sentado en máquina | mach | b | | Seated calf raise
+Elevación de talones en prensa | mach | b | | Leg press calf raise
+Elevación de talones a una pierna con mancuerna | db | b | | Single-leg calf raise
+Elevación de talones con barra en Smith | mach | b | | Smith calf raise
+Elevación de talones en escalón | bw | b | | Step calf raise
+Elevación de talones sentado con mancuerna | db | b | | Seated dumbbell calf raise
+Elevación de talones con pausa | bw | b | | Paused calf raise
+Elevación de punta de pie (tibial anterior) | bw | b | | Tibialis raise
+Elevación de talones con banda | band | b | | Band calf raise
+Salto de comba en el sitio | other | b | | Jump rope calf
+Caminata sobre talones | bw | b | | Heel walk
+Caminata sobre puntas | bw | b | | Toe walk
+Elevación de talones excéntrica a una pierna | bw | i | | Eccentric single-leg calf raise
+Burro de pantorrilla | bw | i | | Donkey calf raise

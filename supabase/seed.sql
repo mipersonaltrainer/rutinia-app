@@ -1,0 +1,1 @@
+-- Intentionally empty: the exercise library is loaded by `npm run exercises:seed` (idempotent), not by supabase db reset.

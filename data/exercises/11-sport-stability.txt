@@ -1,0 +1,38 @@
+@muscle=full_body @pattern=locomotion @type=power
+Escalera de agilidad pies rápidos | other | b | calves | Agility ladder quick feet
+Escalera de agilidad con desplazamiento lateral | other | i | calves,abductors | Ladder lateral shuffle
+Conos en T (T-drill) | other | i | quadriceps,calves | T-drill
+Conos 5-10-5 (pro agility) | other | i | quadriceps,glutes | 5-10-5 shuttle
+Aceleración desde posición de tres puntos | bw | a | glutes,hamstrings | Three-point start
+Resistencia de velocidad con banda | band | i | glutes,hamstrings | Banded sprint
+Sprint con paracaídas | other | a | glutes,hamstrings | Parachute sprint
+Cambio de dirección en V | bw | i | quadriceps,glutes | V-cut drill
+Desplazamiento lateral defensivo | bw | b | abductors,quadriceps | Defensive shuffle
+Carioca | bw | b | abductors,calves | Carioca
+Skipping A | bw | b | hip_flexors,calves | A-skip
+Skipping B | bw | i | hamstrings,hip_flexors | B-skip
+Salto de rebote con aterrizaje a una pierna | bw | a | calves,glutes | Single-leg bounding
+Zancadas de potencia con salto (bounding) | bw | a | glutes,hamstrings | Bounding
+Lanzamiento de balón medicinal rotacional contra pared | med | i | core,glutes | Wall rotational throw
+Golpe de martillo con neumático | other | a | back,core | Tire hammer strike
+Volteo de neumático | other | a | glutes,back | Tire flip
+Saltos laterales sobre valla baja | bw | i | abductors,calves | Lateral hurdle jump
+Reacción a señal visual con cambio de dirección | bw | i | quadriceps | Reactive agility
+Tiro de barra de dominadas explosivo (muscle-up progresión) | bw | a | back,triceps | Muscle-up progression
+@muscle=core @pattern=stability @type=stability
+Equilibrio a una pierna con ojos abiertos | bw | b | calves,glutes | Single-leg balance
+Equilibrio a una pierna con ojos cerrados | bw | i | calves,glutes | Eyes-closed single-leg balance
+Equilibrio a una pierna sobre cojín inestable | other | i | calves | Balance pad stand
+Equilibrio en BOSU con sentadilla | other | i | quadriceps,glutes | BOSU squat
+Equilibrio con elevación de rodilla (stork) | bw | b | glutes | Stork stand
+Alcance en estrella a una pierna | bw | i | glutes,calves | Star excursion
+Alcance en Y a una pierna (Y-balance) | bw | i | glutes,calves | Y-balance reach
+Peso muerto a una pierna sin carga | bw | b | hamstrings,glutes | Bodyweight single-leg RDL
+Paso en tándem sobre línea | bw | b | calves | Tandem walk
+Caminata sobre barra de equilibrio | other | i | calves,glutes | Balance beam walk
+Sentadilla a una pierna en banco con equilibrio | bw | i | quadriceps,glutes | Single-leg bench squat
+Estabilidad de rodilla con banda (terminal knee extension) | band | b | quadriceps | Terminal knee extension
+Estabilidad de cadera con caminata lateral lenta | band | b | abductors | Slow lateral band walk
+Lanzamiento y recepción de balón a una pierna | med | i | core | Balance ball catch
+Estabilización rítmica con banda | band | i | shoulders | Rhythmic stabilization
+Golpeteo de pies en suelo con control de pelvis | bw | b | core | Heel taps
