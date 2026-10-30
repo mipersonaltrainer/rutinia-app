@@ -130,6 +130,7 @@ describe("second factor for the support team (enforced in the database)", () => 
     expect((await E.rpc("is_support_staff")).data).toBe(true);
     const th = (await T().rpc("support_open_thread", { p_category: "otro", p_subject: "Consulta mfa dos", p_body: "hola" })).data as string;
     expect((await E.rpc("support_send", { p_thread: th, p_body: "respuesta con segundo factor", p_as_staff: true })).error).toBeNull();
+    expect((await admin.from("notifications").select("title").eq("user_id", t).eq("kind", "support")).data?.[0]?.title).toBe("Soporte te respondi\u00f3");   // accents stored intact (0047)
     expect((await E.from("security_settings").update({ staff_mfa_required: false }).eq("id", true)).error?.code).toBe("42501");
     await setRequired(false);
   });

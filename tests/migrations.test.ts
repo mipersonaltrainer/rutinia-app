@@ -27,6 +27,9 @@ describe("migration hygiene (static; the real application from zero is the CI jo
       }
     }
   });
+  it("the accents repair (0047) is plain ASCII, so no way of applying it can garble it again", () => {
+    expect(/^[\x00-\x7F]*$/.test(sql.get("0047_accents_repair.sql")!)).toBe(true);
+  });
   it("no migration hands privileges back to anon", () => {
     for (const [f, text] of sql) if (Number(f.slice(0, 4)) >= 38) expect(text, f).not.toMatch(/grant [^;]*\bto\b[^;]*\banon\b/i);
   });
