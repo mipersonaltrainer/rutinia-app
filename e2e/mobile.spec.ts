@@ -36,7 +36,7 @@ async function audit(page: Page, path: string): Promise<Issue[]> {
   }, path);
 }
 
-const PUBLIC = ["/", "/login", "/signup", "/forgot-password", "/privacidad", "/terminos"];
+const PUBLIC = ["/", "/login", "/signup", "/forgot-password", "/privacidad", "/terminos", "/cookies"];
 // With MOBILE_AUDIT_OUT set, every issue is also appended (one JSON per line) so a full baseline survives failing tests that restart the worker.
 const keep = (xs: Issue[]) => { if (process.env.MOBILE_AUDIT_OUT) for (const i of xs) appendFileSync(process.env.MOBILE_AUDIT_OUT, JSON.stringify(i) + "\n"); return xs; };
 
