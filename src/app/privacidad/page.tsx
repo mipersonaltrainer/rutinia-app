@@ -55,7 +55,7 @@ export default function Privacidad() {
           <tr><td>Resend</td><td>Envío de correos del servicio</td><td>Correo y contenido del aviso</td></tr>
           <tr><td>Cloudflare Turnstile</td><td>Verificación anti-bots al registrarte o iniciar sesión</td><td>Datos técnicos del navegador</td></tr>
           <tr><td>Google (opcional)</td><td>Iniciar sesión con tu cuenta de Google</td><td>Nombre y correo que Google comparte</td></tr>
-          <tr><td>Proveedor de modelos de IA (Anthropic, OpenAI o Google, según el configurado)</td><td>Borradores con IA para el entrenador</td><td>Solo con tu consentimiento de IA, la información necesaria para el borrador</td></tr>
+          <tr><td>Google (Gemini), modelos de IA</td><td>Borradores con IA para el entrenador</td><td>Solo con tu consentimiento de IA, la información necesaria para el borrador</td></tr>
           <tr><td>Servicios de notificaciones de tu navegador</td><td>Avisos push si los activas</td><td>Identificador técnico; el aviso no incluye datos de salud</td></tr>
         </tbody></table></div></section>
 
