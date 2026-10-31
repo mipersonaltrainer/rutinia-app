@@ -63,3 +63,15 @@ test("el buscador de ejercicios ofrece salida cuando los filtros no dan resultad
     await p.goto(`/trainer/exercises?q=press&angle=${angle}`); await expect(p.getByText(new RegExp(`· ${label}`)).first()).toBeVisible();
   }
 });
+
+test("un ejercicio con ilustración muestra inicio, recorrido y final, y el entrenador cambia entre modelo hombre y mujer", async ({ browser }) => {
+  const ctx = await browser.newContext(); const p = await ctx.newPage(); await login(p, w.trainerEmail);
+  const { data: ex } = await admin.from("exercises").select("id").eq("slug", "curl-martillo").is("owner_id", null).single();
+  await p.goto(`/trainer/exercises/${ex!.id}`);
+  const imgs = p.locator("figure img"); await expect(imgs).toHaveCount(3);
+  await expect(imgs.first()).toHaveAttribute("src", /exercise-media\/male\/curl-martillo\/1\.webp/);
+  for (let i = 0; i < 3; i++) expect(await imgs.nth(i).evaluate((el: HTMLImageElement) => el.complete && el.naturalWidth > 0 || new Promise((r) => { el.onload = () => r(true); el.onerror = () => r(false); }))).toBe(true);
+  await p.getByRole("button", { name: "Modelo mujer" }).click();
+  await expect(imgs.first()).toHaveAttribute("src", /exercise-media\/female\/curl-martillo\/1\.webp/);
+  await expect(p.getByRole("button", { name: "Modelo mujer" })).toHaveAttribute("aria-pressed", "true");
+});
