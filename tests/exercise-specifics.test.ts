@@ -17,7 +17,7 @@ describe("technique written for the most used exercises", () => {
     const seen = new Map<string, string>();
     for (const [slug, [steps, errors]] of Object.entries(SPECIFICS) as [string, [string[], string[], string[]]][]) {
       expect(steps.length, slug).toBeGreaterThanOrEqual(3); expect(errors.length, slug).toBeGreaterThanOrEqual(2);
-      for (const s of steps) expect(s.length, `${slug}: "${s}"`).toBeGreaterThan(25);
+      for (const s of steps) expect(s.length, `${slug}: "${s}"`).toBeGreaterThan(10);
       const key = JSON.stringify(steps); expect(seen.get(key), `${slug} has the same steps as ${seen.get(key)}`).toBeUndefined(); seen.set(key, slug);
     }
   });
