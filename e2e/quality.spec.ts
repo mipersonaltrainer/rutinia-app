@@ -42,13 +42,13 @@ test.describe("SEO técnico", () => {
     for (const p of ["/trainer/", "/client/", "/api/", "/auth/", "/invite/"]) expect(txt).toContain(`Disallow: ${p}`);
     const map = await request.get("/sitemap.xml"); expect(map.status()).toBe(200); expect(map.headers()["content-type"]).toMatch(/xml/);
     const locs = [...(await map.text()).matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
-    expect(locs).toEqual([`${BASE}/`, `${BASE}/signup`, `${BASE}/privacidad`, `${BASE}/terminos`]);
+    expect(locs).toEqual([`${BASE}/`, `${BASE}/signup`, `${BASE}/privacidad`, `${BASE}/terminos`, `${BASE}/cookies`]);
     for (const l of locs) expect((await request.get(l)).status(), l).toBe(200);          // every listed URL is real, and the sitemap is not a list of redirects
   });
 
   test("cada página pública tiene título, descripción y canónica propios, un solo h1 e idioma", async ({ page }) => {
     const seen = { titles: new Set<string>(), descriptions: new Set<string>() };
-    for (const path of ["/", "/signup", "/privacidad", "/terminos"]) {
+    for (const path of ["/", "/signup", "/privacidad", "/terminos", "/cookies"]) {
       await page.goto(path);
       const title = await page.title(); const desc = await metaContent(page, 'meta[name="description"]');
       expect(title.length, path).toBeGreaterThan(10); expect(title.length, `${path} title too long`).toBeLessThanOrEqual(70);
@@ -142,7 +142,7 @@ test.describe("errores de red y de interfaz", () => {
 test.describe("accesibilidad WCAG 2.2 AA (axe-core, todas las pantallas)", () => {
   test("pantallas públicas: cero violaciones", async ({ page }) => {
     const bad: string[] = [];
-    for (const path of ["/", "/login", "/signup", "/forgot-password", "/privacidad", "/terminos", "/offline", "/reset-password", "/esta-pagina-no-existe"]) { await page.goto(path); await page.waitForTimeout(1500); /* axe measures colour: wait for the entrance animations to settle (halfway through a fade the contrast is lower) */ for (const v of await axeViolations(page)) bad.push(`${path} → ${v}`); }
+    for (const path of ["/", "/login", "/signup", "/forgot-password", "/privacidad", "/terminos", "/cookies", "/offline", "/reset-password", "/esta-pagina-no-existe"]) { await page.goto(path); await page.waitForTimeout(1500); /* axe measures colour: wait for the entrance animations to settle (halfway through a fade the contrast is lower) */ for (const v of await axeViolations(page)) bad.push(`${path} → ${v}`); }
     expect(bad).toEqual([]);
   });
   test("pantallas del entrenador: cero violaciones", async ({ browser }) => {
@@ -234,7 +234,7 @@ test.describe("rendimiento: presupuestos y carga", () => {
     expect((await request.get("/_next/static/chunks/" + (await (await request.get("/login")).text()).match(/chunks\/([\w-]+\.js)/)![1])).headers()["cache-control"]).toMatch(/immutable/);
   });
   test("las páginas públicas no usan «no-store», para que el botón «atrás» restaure al instante (bfcache); las privadas sí no se guardan", async ({ request, browser }) => {
-    for (const p of ["/", "/privacidad", "/terminos", "/signup"]) expect((await request.get(p)).headers()["cache-control"], p).not.toMatch(/no-store/);
+    for (const p of ["/", "/privacidad", "/terminos", "/cookies", "/signup"]) expect((await request.get(p)).headers()["cache-control"], p).not.toMatch(/no-store/);
     const ctx = await browser.newContext({ baseURL: BASE }); const page = await ctx.newPage(); await login(page, w.clientEmail);
     const res = await page.goto("/client/privacy"); expect(res!.headers()["cache-control"]).toMatch(/no-store|private/); await ctx.close();
   });

@@ -215,7 +215,7 @@ export function Footer() {
     <footer className="mt-10 bg-[var(--surface)] px-5 pb-10 pt-[70px] md:px-10 md:pt-20">
       <div className="mx-auto flex max-w-[1100px] flex-col justify-between gap-12 md:flex-row">
         <div className="max-w-[320px]"><Logo /><p className="lp-muted mt-5 text-[14px] leading-[21px]">{SITE_TAGLINE}. Software para entrenadores personales: evalúa, planifica, ejecuta, mide y mejora.</p><p className="mt-5 text-[13px] text-white/60">© {new Date().getFullYear()} Rutinia.</p><p className="mt-2 text-[13px] text-white/60">Soporte: <a href={`mailto:${SUPPORT_EMAIL}`} className="underline hover:text-[var(--accent)]">{SUPPORT_EMAIL}</a></p></div>
-        <div className="flex gap-16">{col("Menú rápido", [["Cómo funciona", "#como-funciona"], ["Funciones", "#funciones"], ["Precios", "#precios"], ["Preguntas", "#preguntas"]])}{col("Información", [["Iniciar sesión", "/login"], ["Crear cuenta", "/signup"], ["Términos", "/terminos"], ["Privacidad", "/privacidad"]])}</div>
+        <div className="flex gap-16">{col("Menú rápido", [["Cómo funciona", "#como-funciona"], ["Funciones", "#funciones"], ["Precios", "#precios"], ["Preguntas", "#preguntas"]])}{col("Información", [["Iniciar sesión", "/login"], ["Crear cuenta", "/signup"], ["Términos", "/terminos"], ["Privacidad", "/privacidad"], ["Cookies", "/cookies"]])}</div>
       </div>
     </footer>
   );

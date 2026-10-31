@@ -13,7 +13,7 @@ export function siteOrigin(env: Record<string, string | undefined> = process.env
 }
 
 /** Pages that belong in search results (and the sitemap): public, indexable, no user data. */
-export const PUBLIC_PAGES = ["/", "/signup", "/privacidad", "/terminos"] as const;
+export const PUBLIC_PAGES = ["/", "/signup", "/privacidad", "/terminos", "/cookies"] as const;
 
 /** Where trainers write for help (also answered inside the platform: /trainer/support). */
 export const SUPPORT_EMAIL = "support@rutinia.company";
