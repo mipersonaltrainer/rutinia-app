@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { LegalPage } from "@/components/landing/LegalPage";
 import { LEGAL } from "@/lib/legal";
 
-export const metadata: Metadata = { title: "Política de cookies", description: "Qué cookies y almacenamiento local usa Rutinia: solo los necesarios para iniciar sesión, proteger la cuenta y recordar preferencias. Sin publicidad ni analítica de terceros.", alternates: { canonical: "/cookies" } };
+export const metadata: Metadata = { title: "Política de cookies", description: "Qué cookies usa Rutinia: solo las necesarias para iniciar sesión, proteger tu cuenta y recordar preferencias. Sin publicidad ni analítica de terceros.", alternates: { canonical: "/cookies" } };
 
 export default function Cookies() {
   return (
