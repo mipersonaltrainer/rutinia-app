@@ -13,6 +13,15 @@ export function isAllowedCallUrl(raw: string): boolean {
   return CALL_HOSTS.some((d) => h === d || h.endsWith("." + d));
 }
 
+/** A Google Meet link must point at a room (abc-defg-hij), not at the "new meeting" page. Returns a friendly Spanish message, or null when the link is fine. */
+export function callUrlProblem(raw: string): string | null {
+  if (!isAllowedCallUrl(raw)) return "Usa un enlace https de Google Meet, Zoom, Teams, Jitsi o Whereby (o marca «No tengo cuenta de Google»).";
+  const u = new URL(raw);
+  if (u.hostname.toLowerCase() === "meet.google.com" && !/^\/(?:[a-z]{3}-[a-z]{4}-[a-z]{3}|lookup\/[A-Za-z0-9_-]+)\/?$/.test(u.pathname))
+    return "Ese enlace de Meet no es de una sala. Pulsa «Crear reunión en Google Meet», copia el enlace que te muestra (termina como abc-defg-hij) y pégalo aquí.";
+  return null;
+}
+
 // A fresh, unguessable Jitsi room. Public Jitsi needs no account, but anyone with the link can join:
 // the room name carries 128 random bits and the link is shown only to the two parties.
 export function newJitsiLink(rand: (n: number) => Uint8Array = (n) => crypto.getRandomValues(new Uint8Array(n))): string {
