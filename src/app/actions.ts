@@ -1,4 +1,5 @@
 "use server";
+import { normalizeReferralCode } from "@/lib/billing/referrals";
 import { redirect } from "next/navigation";
 import { z } from "zod";
 import { createClient } from "@/lib/supabase/server";
@@ -35,10 +36,11 @@ export async function signIn(_: unknown, form: FormData) {
 }
 
 export async function signUpTrainer(_: unknown, form: FormData) {
-  const parsed = z.object({ fullName: z.string().trim().min(2, "Nombre requerido").max(120), email: z.email("Escribe un correo válido."), password: z.string().max(200), birthDate: z.string().trim().max(10).optional() }).safeParse(Object.fromEntries(form));
+  const parsed = z.object({ fullName: z.string().trim().min(2, "Nombre requerido").max(120), email: z.email("Escribe un correo válido."), password: z.string().max(200), birthDate: z.string().trim().max(10).optional(), refCode: z.string().trim().max(20).optional() }).safeParse(Object.fromEntries(form));
   if (!parsed.success) return { error: parsed.error.issues[0].message };
   const { fullName, email, password } = parsed.data;
   const birthDate = parsed.data.birthDate || undefined;
+  const refCode = normalizeReferralCode(parsed.data.refCode);
   if (birthDate && !validBirthDate(birthDate)) return { error: "Revisa la fecha de nacimiento (déjala vacía si prefieres no darla)." };
   const pw = checkPassword(password, { email, fullName }); if (!pw.ok) return { error: pw.error };
   const secret = authSecret();
@@ -50,7 +52,7 @@ export async function signUpTrainer(_: unknown, form: FormData) {
   if (!honey && retryMessage(token)) return { error: retryMessage(token)! };       // a person who was too quick, or left the page open: tell them
   if (bot) return { ok: CHECK_EMAIL };                                     // a script gets the same answer as a person who must confirm by e-mail
   const supabase = await createClient();
-  const { data, error } = await supabase.auth.signUp({ email, password, options: { captchaToken: captchaTokenOf(form), data: { full_name: fullName, ...(birthDate ? { birth_date: birthDate } : {}) }, emailRedirectTo: `${await appOrigin()}/auth/confirm?next=/trainer` } });
+  const { data, error } = await supabase.auth.signUp({ email, password, options: { captchaToken: captchaTokenOf(form), data: { full_name: fullName, ...(birthDate ? { birth_date: birthDate } : {}), ...(refCode ? { ref_code: refCode } : {}) }, emailRedirectTo: `${await appOrigin()}/auth/confirm?next=/trainer` } });
   if (isCaptchaError(error)) return { error: CAPTCHA_FAILED };
   if (error) return { error: "No se pudo crear la cuenta. Si ya tienes una, inicia sesión o recupera tu contraseña." };   // same text whatever the reason: no account enumeration
   if (!data.session) return { ok: CHECK_EMAIL };                           // e-mail confirmation is on: there is no session until the link is opened

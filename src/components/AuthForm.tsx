@@ -8,7 +8,7 @@ import { PASSWORD_MIN } from "@/lib/auth/password";
 
 type Action = (prev: unknown, form: FormData) => Promise<{ error?: string; ok?: string } | void>;
 
-export function AuthForm({ action, mode, token, notice, next, google, captcha }: { action: Action; mode: "login" | "signup"; token?: string; notice?: { tone: "ok" | "warn"; text: string }; next?: string; google?: boolean; captcha?: { siteKey: string; nonce?: string } }) {
+export function AuthForm({ action, mode, token, notice, next, google, captcha, refCode }: { action: Action; mode: "login" | "signup"; token?: string; notice?: { tone: "ok" | "warn"; text: string }; next?: string; google?: boolean; captcha?: { siteKey: string; nonce?: string }; refCode?: string }) {
   const [state, formAction, pending] = useActionState(guardForm(action), undefined);
   const field = "w-full rounded-lg border border-[var(--border)] bg-[var(--surface-2)] px-3 py-2.5 text-white outline-none focus:border-[var(--accent)]";
   const signup = mode === "signup";
@@ -27,6 +27,8 @@ export function AuthForm({ action, mode, token, notice, next, google, captcha }:
       {next && <input type="hidden" name="next" value={next} />}
       {signup && (<label className="block text-sm">Nombre completo<input name="fullName" required maxLength={120} className={field} /></label>)}
       {signup && (<><label className="block text-sm">Fecha de nacimiento (opcional)<input name="birthDate" type="date" autoComplete="bday" className={field} /></label><p className="-mt-2 text-xs text-[var(--muted)]">La usamos solo para felicitarte en tu cumpleaños. Puedes cambiarla o borrarla en Mi cuenta.</p></>)}
+      {signup && (<label className="block text-sm">Código de referido (opcional)<input name="refCode" defaultValue={refCode} maxLength={20} autoCapitalize="characters" autoComplete="off" className={field} /></label>)}
+      {signup && <p className="-mt-2 text-xs text-[var(--muted)]">Si un colega te recomendó Rutinia, con su código tu prueba gratis es de 10 días en vez de 7.</p>}
       <label className="block text-sm">Correo<input name="email" type="email" required autoComplete="email" className={field} /></label>
       <label className="block text-sm">Contraseña<input name="password" type="password" required minLength={signup ? PASSWORD_MIN : undefined} autoComplete={signup ? "new-password" : "current-password"} className={field} /></label>
       {signup && <p className="text-xs text-[var(--muted)]">Mínimo {PASSWORD_MIN} caracteres, con letras y números. No uses tu nombre ni tu correo.</p>}
@@ -35,7 +37,7 @@ export function AuthForm({ action, mode, token, notice, next, google, captcha }:
       {state?.error && <p role="alert" className="text-sm text-[var(--warn-text)]">{state.error}</p>}
       {state?.ok && <p role="status" className="text-sm text-[var(--accent)]">{state.ok}</p>}
       <button disabled={pending} className="w-full rounded-lg bg-[var(--accent)] py-2.5 font-semibold text-black disabled:opacity-60">
-        {pending ? "Procesando…" : signup ? "Empezar prueba gratis de 7 días" : "Entrar"}
+        {pending ? "Procesando…" : signup ? (refCode ? "Empezar prueba gratis de 10 días" : "Empezar prueba gratis de 7 días") : "Entrar"}
       </button>
       {!signup && <p className="text-center text-sm"><Link className="text-[var(--accent)] underline" href="/forgot-password">¿Olvidaste tu contraseña?</Link></p>}
       <p className="text-center text-sm text-[var(--muted)]">
