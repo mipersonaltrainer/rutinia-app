@@ -9,6 +9,7 @@ import { getBillingConfig } from "@/lib/billing/config";
 import { AI_PACKS, AI_PACK_IDS, BASE_PRICE_COP_CENTS, aiPackTotalCents, slotPurchaseTotalCents, slotUnitCents } from "@/lib/billing/pricing";
 import { buildButtonParams } from "@/lib/billing/providers/bold";
 import type { BoldButtonParams } from "@/lib/billing/bold-shared";
+import { normalizeReferralCode, REFERRAL_REWARDS } from "@/lib/billing/referrals";
 import { createPayPalClient, PayPalError } from "@/lib/billing/providers/paypal";
 
 type State = { error?: string; ok?: string; bold?: BoldButtonParams } | undefined;
@@ -139,4 +140,23 @@ export async function cancelSubscription(prev?: State): Promise<State> {
   } catch { return { error: "No se pudo cancelar en PayPal. Inténtalo de nuevo o cancélala desde tu cuenta de PayPal." }; }
   revalidatePath("/trainer/billing");
   return { ok: "Suscripción cancelada. Conservas el acceso hasta el fin del periodo ya pagado." };
+}
+
+export async function saveReferralReward(_: State, fd: FormData): Promise<State> {
+  const reward = z.enum(["slots", "ai", "days"]).safeParse(fd.get("reward"));
+  if (!reward.success) return { error: "Elige una recompensa." };
+  let ctx; try { ctx = await trainerContext(); } catch { return { error: "No autorizado." }; }
+  const { error } = await ctx.supabase.rpc("set_my_referral", { p_reward: reward.data });
+  if (error) return { error: "No se pudo guardar. Inténtalo de nuevo." };
+  revalidatePath("/trainer/billing");
+  return { ok: `Listo. Cuando alguien que invites pague su primer mes recibirás ${REFERRAL_REWARDS[reward.data].short}.` };
+}
+export async function redeemReferral(_: State, fd: FormData): Promise<State> {
+  const code = normalizeReferralCode(String(fd.get("code") ?? ""));
+  if (!code) return { error: "Revisa el código: tiene 7 letras y números." };
+  let ctx; try { ctx = await trainerContext(); } catch { return { error: "No autorizado." }; }
+  const { data } = await ctx.supabase.rpc("redeem_referral_code", { p_code: code });
+  if (!data) return { error: "No pudimos aplicar ese código. Solo funciona en tus primeros 3 días de prueba, antes de pagar y una sola vez." };
+  revalidatePath("/trainer/billing");
+  return { ok: "Código aplicado: tu prueba gratis pasó a 10 días." };
 }
