@@ -5,17 +5,20 @@ import { ActionForm, fieldCls } from "@/components/ActionForm";
 import { ExerciseSets, type Saved } from "@/components/workout/ExerciseSets";
 import { RestTimer } from "@/components/workout/RestTimer";
 import { ExerciseVideo } from "@/components/ExerciseVideo";
+import { ExerciseFrames } from "@/components/ExerciseFrames";
+import { clientFigure } from "@/lib/exercises/sex";
 import { describePrescription } from "@/lib/plans/prescription";
 import { completionPct, summarizeSets, workoutAlerts } from "@/lib/training/metrics";
 import { JOINT_LABEL } from "@/lib/exercises/labels";
 import { abandonWorkout, finishWorkout, saveDiscomfort } from "../actions";
 
-type PE = { id: string; position: number; exercise_id: string; sets: number; warmup_sets: number; reps_min: number | null; reps_max: number | null; duration_sec: number | null; load_kg: number | null; rest_sec: number | null; rpe: number | null; rir: number | null; tempo: string | null; client_notes: string | null; exercise: { name_es: string; instructions: string[]; safety_notes: string[]; video_path: string | null } };
+type PE = { id: string; position: number; exercise_id: string; sets: number; warmup_sets: number; reps_min: number | null; reps_max: number | null; duration_sec: number | null; load_kg: number | null; rest_sec: number | null; rpe: number | null; rir: number | null; tempo: string | null; client_notes: string | null; exercise: { slug: string; name_es: string; instructions: string[]; safety_notes: string[]; video_path: string | null } };
 
 export default async function Workout({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const { supabase, profile } = await requireUser("client");
-  const { data: log } = await supabase.from("workout_logs").select("*, session:plan_sessions!workout_logs_session_id_fkey(name, warmup_notes, prescribed_exercises(id,position,exercise_id,sets,warmup_sets,reps_min,reps_max,duration_sec,load_kg,rest_sec,rpe,rir,tempo,client_notes, exercise:exercises!prescribed_exercises_exercise_id_fkey(name_es,instructions,safety_notes,video_path)))").eq("id", id).eq("client_id", profile.id).maybeSingle();
+  const figure = await clientFigure(supabase, profile.id);
+  const { data: log } = await supabase.from("workout_logs").select("*, session:plan_sessions!workout_logs_session_id_fkey(name, warmup_notes, prescribed_exercises(id,position,exercise_id,sets,warmup_sets,reps_min,reps_max,duration_sec,load_kg,rest_sec,rpe,rir,tempo,client_notes, exercise:exercises!prescribed_exercises_exercise_id_fkey(slug,name_es,instructions,safety_notes,video_path)))").eq("id", id).eq("client_id", profile.id).maybeSingle();
   if (!log) notFound();
   const pes = ([...(log.session.prescribed_exercises as PE[])]).sort((a, b) => a.position - b.position);
   const exIds = pes.map((p) => p.exercise_id);
@@ -63,7 +66,7 @@ export default async function Workout({ params }: { params: Promise<{ id: string
               <p className="text-sm text-[var(--accent)]">Objetivo: {describePrescription(pe)}{pe.load_kg ? ` @ ${pe.load_kg} kg` : ""}{pe.rpe ? ` · RPE ${pe.rpe}` : pe.rir !== null ? ` · RIR ${pe.rir}` : ""}{pe.rest_sec ? ` · descanso ${pe.rest_sec}s` : ""}{pe.tempo ? ` · tempo ${pe.tempo}` : ""}</p>
               {pe.client_notes && <p className="text-sm">{pe.client_notes}</p>}
               <p className="text-xs text-[var(--muted)]">{lastText ? `Última vez (${new Date(last!.log.started_at).toLocaleDateString("es-CO")}): ${lastText}` : "Primera vez que registras este ejercicio."}</p>
-              <details className="mt-1"><summary className="cursor-pointer text-xs text-[var(--accent)]">Cómo se hace{pe.exercise.video_path ? " (con video)" : ""}</summary><div className="mt-2 max-w-md"><ExerciseVideo path={pe.exercise.video_path} name={pe.exercise.name_es} /></div><ol className="mt-1 list-decimal pl-5 text-xs">{pe.exercise.instructions.map((i) => <li key={i}>{i}</li>)}</ol></details></div>
+              <details className="mt-1"><summary className="cursor-pointer text-xs text-[var(--accent)]">Cómo se hace{pe.exercise.video_path ? " (con video)" : ""}</summary><div className="mt-2 max-w-md space-y-3"><ExerciseFrames slug={pe.exercise.slug} name={pe.exercise.name_es} sex={figure} /><ExerciseVideo path={pe.exercise.video_path} name={pe.exercise.name_es} /></div><ol className="mt-1 list-decimal pl-5 text-xs">{pe.exercise.instructions.map((i) => <li key={i}>{i}</li>)}</ol></details></div>
             <ExerciseSets logId={id} prescribedId={pe.id} exerciseId={pe.exercise_id} planned={pe.sets} warmups={pe.warmup_sets} restSec={pe.rest_sec} durationBased={!pe.reps_min && !!pe.duration_sec} defaults={{ load: last?.sets.find((s) => s.kind === "work")?.load_kg ?? pe.load_kg, reps: pe.reps_min }} saved={saved} locked={false} />
             <details className="text-sm"><summary className="cursor-pointer text-xs text-[var(--muted)]">{d ? `Molestia registrada: ${d.severity}/10` : "¿Sentiste alguna molestia?"}</summary>
               <ActionForm action={saveDiscomfort.bind(null, id, pe.exercise_id)} submitLabel="Guardar molestia" className="mt-2 border-0 bg-transparent p-0">

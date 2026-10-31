@@ -4,6 +4,7 @@ import { requireUser } from "@/lib/session";
 import { EQUIPMENT_LABEL, GOAL_LABEL, JOINT_LABEL, LEVEL_LABEL, MUSCLE_LABEL, PATTERN_LABEL, REL_LABEL } from "@/lib/exercises/labels";
 import { ActionForm, fieldCls } from "@/components/ActionForm";
 import { ExerciseVideo } from "@/components/ExerciseVideo";
+import { ExerciseFrames } from "@/components/ExerciseFrames";
 import { addExerciseMedia } from "../actions";
 
 const List = ({ title, items }: { title: string; items: string[] }) => items.length ? (<div><h3 className="font-semibold">{title}</h3><ul className="mt-1 list-disc pl-5 text-sm">{items.map((i) => <li key={i}>{i}</li>)}</ul></div>) : null;
@@ -25,6 +26,7 @@ export default async function ExerciseDetail({ params }: { params: Promise<{ id:
       {e.alt_names.length > 0 && <p className="text-sm text-[var(--muted)]">También: {e.alt_names.join(", ")}</p>}
       <p className="text-sm">{MUSCLE_LABEL[e.primary_muscle]}{e.secondary_muscles.length ? ` · secundarios: ${e.secondary_muscles.map((m: string) => MUSCLE_LABEL[m]).join(", ")}` : ""} · {PATTERN_LABEL[e.movement_pattern]} · {EQUIPMENT_LABEL[e.equipment]} · {LEVEL_LABEL[e.difficulty]}</p>
       <p className="text-xs text-[var(--muted)]">Objetivos: {e.goals.map((g: string) => GOAL_LABEL[g]).join(", ")} · Carga articular: {e.joint_stress.map((j: string) => JOINT_LABEL[j]).join(", ") || "baja"}</p>
+      <ExerciseFrames slug={e.slug} name={e.name_es} sex="male" picker />
       {e.video_path && <ExerciseVideo path={e.video_path} name={e.name_es} />}
       <div className="space-y-4 rounded-xl border border-[var(--border)] bg-[var(--surface)] p-5">
         <List title="Requisitos técnicos" items={e.requirements} />
