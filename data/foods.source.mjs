@@ -107,6 +107,31 @@ export const FOODS = [
   ["leche-de-almendra-sin-azucar", "Leche de almendra sin azúcar", C.beb, 17, 0.6, 1.5, 1.1, 0.2, 1, { pocillo: 120, vaso: 240 }],
   ["gaseosa", "Gaseosa", C.beb, 42, 0, 10.6, 0, 0, 1, { vaso: 250 }],
   ["proteina-whey-en-polvo", "Proteína whey en polvo", C.otr, 400, 80, 8, 6, 0, 0, { unidad: 30, cucharada: 10 }],
+  // --- Colombian staples and dishes added for launch. Typical-recipe reference values (dishes vary by cook and region): the nutrition
+  //     professional review (docs/nutricion/REVISION_PROFESIONAL.md) must still confirm them against the ICBF table before anyone relies on them. ---
+  ["arracacha-cocida", "Arracacha cocida", C.cer, 100, 0.8, 23.5, 0.2, 3, 0, { unidad: 120, cucharon: 100 }],
+  ["name-cocido", "Ñame cocido", C.cer, 118, 1.5, 27.9, 0.2, 4.1, 0, { unidad: 150, cucharon: 100 }],
+  ["chontaduro-cocido", "Chontaduro cocido", C.cer, 185, 2.5, 37, 3.9, 3.5, 0, { unidad: 25 }],
+  ["patacon-platano-verde-frito", "Patacón (plátano verde frito)", C.cer, 267, 1.5, 41, 11, 2.5, 0, { unidad: 50 }],
+  ["pan-de-bono", "Pan de bono", C.cer, 300, 8, 40, 12, 1, 0, { unidad: 50 }],
+  ["empanada-de-carne-frita", "Empanada de carne frita", C.cer, 270, 8, 26, 15, 1.5, 0, { unidad: 70 }],
+  ["papas-fritas-de-paquete", "Papas fritas de paquete", C.cer, 536, 7, 53, 35, 4.4, 0, { puñado: 30, unidad: 40 }],
+  ["granola", "Granola", C.cer, 471, 10, 64, 20, 5.3, 0, { cucharada: 10, taza: 100 }],
+  ["sancocho-de-gallina", "Sancocho de gallina (plato)", C.pro, 75, 4.8, 7, 3, 1, 0, { cucharon: 200, taza: 240, porcion: 400 }],
+  ["ajiaco-santafereno", "Ajiaco santafereño (plato)", C.pro, 85, 4.8, 9, 3.2, 1.2, 0, { cucharon: 200, taza: 240, porcion: 400 }],
+  ["huevo-frito", "Huevo frito (en aceite)", C.pro, 196, 13.6, 0.8, 14.8, 0, 0, { unidad: 46 }],
+  ["higado-de-res-cocido", "Hígado de res cocido", C.pro, 175, 26.5, 3.9, 4.7, 0, 0, { porcion: 100 }],
+  ["sardinas-en-lata-escurridas", "Sardinas en lata (escurridas)", C.pro, 208, 24.6, 0, 11.5, 0, 0, { unidad: 90 }],
+  ["chorizo-de-cerdo", "Chorizo de cerdo", C.pro, 455, 24, 1.9, 38, 0, 0, { unidad: 60 }],
+  ["chicharron-de-cerdo", "Chicharrón de cerdo", C.pro, 544, 61, 0, 31, 0, 0, { porcion: 30 }],
+  ["morcilla", "Morcilla", C.pro, 379, 14.6, 0.6, 34.5, 0, 0, { unidad: 80 }],
+  ["salchicha", "Salchicha", C.pro, 300, 12, 3, 27, 0, 0, { unidad: 50 }],
+  ["tofu", "Tofu", C.leg, 76, 8, 1.9, 4.8, 0.3, 0, { porcion: 100 }],
+  ["lulo", "Lulo", C.fru, 25, 0.6, 5.7, 0.1, 1, 0, { unidad: 80 }],
+  ["limon", "Limón", C.fru, 29, 1.1, 9.3, 0.3, 2.8, 0, { unidad: 60 }],
+  ["semillas-de-linaza", "Semillas de linaza", C.gra, 534, 18.3, 28.9, 42.2, 27.3, 0, { cucharada: 10 }],
+  ["kumis", "Kumis", C.lac, 62, 3.3, 5, 3.3, 0, 1, { vaso: 250, pocillo: 100 }],
+  ["aguapanela", "Aguapanela", C.beb, 40, 0, 10, 0, 0, 1, { vaso: 250, pocillo: 100 }],
 ];
 
 export const HOUSEHOLD_UNITS = ["cucharadita", "cucharada", "cucharon", "pocillo", "taza", "vaso", "unidad", "rebanada", "puñado", "porcion"];
