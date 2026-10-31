@@ -1,7 +1,7 @@
 "use server";
 import { revalidatePath } from "next/cache";
 import { createClient } from "@/lib/supabase/server";
-import { cleanMessage, isAllowedCallUrl, newJitsiLink } from "@/lib/messaging/links";
+import { callUrlProblem, cleanMessage, newJitsiLink } from "@/lib/messaging/links";
 
 type State = { error?: string; ok?: string } | undefined;
 const MAP: Record<string, string> = { "rate limited": "Estás enviando demasiado rápido. Espera un momento.", forbidden: "No puedes escribir a este usuario (relación inactiva o sin consentimiento).", "workspace inactive": "Tu espacio de trabajo está inactivo; revisa Facturación.", "link not allowed": "Ese enlace no es de un proveedor permitido.", "invalid date": "Fecha inválida." };
@@ -20,7 +20,8 @@ export async function sendMessageAction(peer: string, role: "trainer" | "client"
 export async function scheduleCallAction(client: string, _: unknown, fd: FormData): Promise<State> {
   const generate = fd.get("generate") === "on";
   const url = generate ? newJitsiLink() : String(fd.get("url") ?? "").trim();
-  if (!isAllowedCallUrl(url)) return { error: "Usa un enlace https de Google Meet, Zoom, Teams, Jitsi o Whereby (o marca «generar sala»)." };
+  const problem = callUrlProblem(url);
+  if (problem) return { error: problem };
   // datetime-local carries no zone; the product is Colombia-only (UTC-5, no DST), so it must not depend on the server clock
   const raw = String(fd.get("when") ?? "");
   const when = new Date(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/.test(raw) ? `${raw}:00-05:00` : NaN);
