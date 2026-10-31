@@ -7,6 +7,9 @@ import { AiCreditsForm } from "@/components/AiCreditsForm";
 import { SubscriptionForm } from "@/components/SubscriptionForm";
 import { ActionForm } from "@/components/ActionForm";
 import { cancelSubscription } from "./actions";
+import { ReferralCard } from "@/components/ReferralCard";
+import { canStillRedeem, referralLink, type ReferralReward } from "@/lib/billing/referrals";
+import { appOrigin } from "@/lib/auth/server";
 import { describeAccess } from "@/lib/billing/access-status";
 
 const STATUS: Record<string, string> = { trialing: "En prueba gratuita", active: "Activa", payment_required: "Pago requerido", past_due: "Pago vencido", suspended: "Suspendida", canceled: "Cancelada (activa hasta el fin del periodo)", expired: "Expirada" };
@@ -19,14 +22,19 @@ export default async function Billing({ searchParams }: { searchParams: Promise<
   const { allowed, sub } = await trainerAccess(supabase, profile.id);
   const access = describeAccess(sub);
   const cfg = getBillingConfig();
-  const [{ count: active }, { data: cap }, { data: purchases }, { data: payments }, { data: aiCredits }, { data: aiPurchases }] = await Promise.all([
+  const [{ count: active }, { data: cap }, { data: purchases }, { data: payments }, { data: aiCredits }, { data: aiPurchases }, { data: refCode }, { data: refs }] = await Promise.all([
     supabase.from("trainer_client_relationships").select("id", { count: "exact", head: true }).eq("trainer_id", profile.id).eq("status", "active"),
     supabase.rpc("trainer_capacity", { t: profile.id }),
     supabase.from("slot_purchases").select("id,created_at,provider,quantity,unit_price_cents,total_cents,currency,charged_amount_cents,charged_currency,status,provider_reference").eq("trainer_id", profile.id).order("created_at", { ascending: false }).limit(20),
     supabase.from("subscription_payments").select("id,created_at,provider,charged_amount_cents,charged_currency,status,period_start,period_end").eq("trainer_id", profile.id).order("created_at", { ascending: false }).limit(20),
     supabase.rpc("my_ai_credits"),
     supabase.from("ai_credit_purchases").select("id,created_at,provider,pack,credits,total_cents,currency,charged_amount_cents,charged_currency,status").eq("trainer_id", profile.id).order("created_at", { ascending: false }).limit(20),
+    supabase.from("referral_codes").select("code,reward").eq("trainer_id", profile.id).maybeSingle(),
+    supabase.from("referrals").select("status").eq("referrer_id", profile.id),
   ]);
+  const mine = await supabase.from("referrals").select("referred_id", { count: "exact", head: true }).eq("referred_id", profile.id);
+  const { data: subRow } = await supabase.from("trainer_subscriptions").select("trial_started_at").eq("trainer_id", profile.id).maybeSingle();
+  const canRedeem = sub?.status === "trialing" && (mine.count ?? 0) === 0 && (payments ?? []).length === 0 && !!subRow?.trial_started_at && canStillRedeem(subRow.trial_started_at);
   const c = capacitySummary(active ?? 0, (cap ?? 20) - 20);
   const over = (active ?? 0) > c.totalCapacity;
   const providers = { paypal: cfg.paypal.enabled, bold: cfg.bold.enabled };
@@ -56,6 +64,8 @@ export default async function Billing({ searchParams }: { searchParams: Promise<
       <SubscriptionForm providers={providers} planConfigured={!!cfg.paypal.planId} />
       {sub?.provider === "paypal" && sub.status !== "canceled" && sub.status !== "expired" && <ActionForm action={cancelSubscription} submitLabel="Cancelar suscripción"><p className="text-sm">Cancelar detiene los cobros futuros. Conservas el acceso hasta el fin del periodo ya pagado.</p></ActionForm>}
       {allowed && <SlotPurchaseForm providers={providers} capacity={{ total: c.totalCapacity, active: c.activeClients }} />}
+
+      <ReferralCard code={refCode?.code ?? null} reward={(refCode?.reward ?? "slots") as ReferralReward} link={refCode ? referralLink(await appOrigin(), refCode.code) : null} rewarded={(refs ?? []).filter((r) => r.status === "rewarded").length} pending={(refs ?? []).filter((r) => r.status === "pending").length} canRedeem={canRedeem} />
 
       {allowed && <AiCreditsForm providers={providers} credits={aiCredits as { free_left: number; paid_left: number } | null} />}
 
