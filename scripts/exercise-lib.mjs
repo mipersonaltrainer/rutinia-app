@@ -1,4 +1,5 @@
 // Pure, deterministic exercise-library builder. Source of truth: data/exercises/*.txt
+import { SPECIFICS } from "../data/exercises/specifics.mjs";
 export const MUSCLES = ["chest","back","shoulders","biceps","triceps","forearms","quadriceps","hamstrings","glutes","calves","core","adductors","abductors","hip_flexors","lower_back","cardio","full_body","hips","spine"];
 export const PATTERNS = ["push_horizontal","push_vertical","pull_horizontal","pull_vertical","squat","hinge","lunge","carry","isolation","core_flexion","core_stability","core_rotation","core_lateral","jump","throw","locomotion","mobility","stability"];
 export const TYPES = ["strength","power","cardio","mobility","stability","isometric"];
@@ -133,6 +134,14 @@ export function build(rows) {
       tags: [...new Set([r.primary_muscle, r.equipment, r.movement_pattern, r.difficulty, ...(home ? ["casa"] : [])])],
       source: "Redacción editorial Rutinia (borrador genérico por patrón de movimiento)", review_status: "draft", media_status: "pending" };
   });
+  // Technique written for the most used exercises replaces the general guide of their movement pattern (a slug that does not exist is an error).
+  const bySlug = new Map(items.map((e) => [e.slug, e]));
+  for (const [slug, [instructions, common_errors, safety]] of Object.entries(SPECIFICS)) {
+    const e = bySlug.get(slug);
+    if (!e) { errors.push(`specifics.mjs: no existe el ejercicio "${slug}"`); continue; }
+    e.instructions = instructions; e.common_errors = common_errors; e.safety_notes = [...e.safety_notes, ...safety];
+    e.source = "Redacción editorial Rutinia (técnica específica; borrador sin revisión profesional)";
+  }
   // relations (deterministic)
   const relations = [];
   const byGroup = new Map();
