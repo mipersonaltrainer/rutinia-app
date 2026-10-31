@@ -68,7 +68,7 @@ export default function Terminos() {
       <section><h2>10. Inteligencia artificial</h2>
         <ul><li>Los «borradores con IA» son <b>sugerencias</b> para ahorrar tiempo al entrenador (por ejemplo, un borrador de plan o de propuesta de progresión). <b>Nunca se aplican solos</b>: el entrenador los revisa, los edita y es quien decide y responde por lo que entrega.</li>
           <li>Pueden contener errores. No son consejo médico ni nutricional.</li>
-          <li>Para generarlos se envía información al <b>proveedor externo de modelos de IA</b> que tengamos configurado, y solo cuando el alumno otorgó el consentimiento específico de IA. No usamos tus datos ni tus fotos para entrenar modelos propios.</li></ul></section>
+          <li>Para generarlos se envía información a <b>Google (Gemini)</b>, nuestro proveedor externo de modelos de IA, y solo cuando el alumno otorgó el consentimiento específico de IA. No usamos tus datos ni tus fotos para entrenar modelos propios.</li></ul></section>
 
       <section><h2>11. Uso aceptable</h2>
         <p>No puedes:</p>
