@@ -26,7 +26,7 @@ const nextConfig: NextConfig = {
       // Public marketing pages carry no user data. `private, no-cache` (instead of Next's default `no-store` for dynamic pages) keeps
       // them out of shared caches, forces revalidation, and lets the browser restore them instantly with the back button (bfcache).
       { source: "/", headers: [{ key: "Cache-Control", value: "private, no-cache" }] },
-      { source: "/(privacidad|terminos|signup)", headers: [{ key: "Cache-Control", value: "private, no-cache" }] },
+      { source: "/(privacidad|terminos|cookies|signup)", headers: [{ key: "Cache-Control", value: "private, no-cache" }] },
       { source: "/(robots.txt|sitemap.xml)", headers: [{ key: "Cache-Control", value: "public, max-age=3600, s-maxage=3600" }] },
       { source: "/sw.js", headers: [{ key: "Cache-Control", value: "no-cache, no-store, must-revalidate" }, { key: "Service-Worker-Allowed", value: "/" }, { key: "Content-Type", value: "application/javascript; charset=utf-8" }] },
     ];

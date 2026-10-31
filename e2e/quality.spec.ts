@@ -58,8 +58,8 @@ test.describe("SEO técnico", () => {
       expect(await page.locator("html").getAttribute("lang")).toBe("es");
       seen.titles.add(title); if (path !== "/") seen.descriptions.add(desc!);
     }
-    expect(seen.titles.size).toBe(4);                                                    // no duplicated titles
-    expect(seen.descriptions.size).toBe(3);
+    expect(seen.titles.size).toBe(5);                                                    // no duplicated titles
+    expect(seen.descriptions.size).toBe(4);
   });
 
   test("la portada trae Open Graph, Twitter Card y datos estructurados válidos que coinciden con lo que se muestra", async ({ page, request }) => {
