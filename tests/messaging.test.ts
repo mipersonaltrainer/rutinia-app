@@ -1,6 +1,20 @@
 import { describe, it, expect } from "vitest";
 import { URL_VECTORS } from "./fixtures-call-urls";
-import { isAllowedCallUrl, newJitsiLink, cleanMessage, CALL_HOSTS } from "@/lib/messaging/links";
+import { isAllowedCallUrl, callUrlProblem, newJitsiLink, cleanMessage, CALL_HOSTS } from "@/lib/messaging/links";
+
+describe("Google Meet links", () => {
+  it("accepts a real room, with or without the trailing slash, and a lookup link", () => {
+    for (const u of ["https://meet.google.com/abc-defg-hij", "https://meet.google.com/abc-defg-hij/", "https://meet.google.com/lookup/abc123_-x"]) expect(callUrlProblem(u), u).toBeNull();
+  });
+  it("explains what to do when the link is the «new meeting» page or not a room", () => {
+    for (const u of ["https://meet.google.com/new", "https://meet.google.com/", "https://meet.google.com/landing", "https://meet.google.com/abc-defg-hij/extra"]) expect(callUrlProblem(u), u).toMatch(/Crear reunión en Google Meet/);
+  });
+  it("other providers and invalid links keep the general rule", () => {
+    expect(callUrlProblem("https://zoom.us/j/123456789")).toBeNull();
+    expect(callUrlProblem("https://evil.example/abc-defg-hij")).toMatch(/Google Meet, Zoom/);
+    expect(callUrlProblem("javascript:alert(1)")).toMatch(/Google Meet, Zoom/);
+  });
+});
 
 describe("call links", () => {
   it.each(URL_VECTORS)("%s -> %s", (u, ok) => expect(isAllowedCallUrl(u)).toBe(ok));

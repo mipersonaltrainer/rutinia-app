@@ -44,8 +44,16 @@ export async function Conversation({ supabase, me, peer, role }: { supabase: Sup
         <ActionForm action={scheduleCallAction.bind(null, peer)} submitLabel="Programar videollamada" resetOnOk>
           <h2 className="font-semibold">Programar videollamada</h2>
           <label className="block text-sm">Fecha y hora (hora local)<input type="datetime-local" name="when" required className="mt-1 block rounded-lg border border-[var(--border)] bg-transparent p-2" /></label>
-          <label className="flex items-center gap-2 text-sm"><input type="checkbox" name="generate" /> Generar una sala de Jitsi nueva (sin cuenta)</label>
-          <label className="block text-sm">…o pega un enlace ({CALL_HOSTS.join(", ")})<input name="url" type="url" className="mt-1 w-full rounded-lg border border-[var(--border)] bg-transparent p-2" placeholder="https://meet.google.com/…" /></label>
+          <div className="space-y-2 rounded-lg border border-[var(--border)] p-3">
+            <p className="text-sm font-semibold">Google Meet (recomendado)</p>
+            <ol className="list-decimal space-y-1 pl-5 text-sm">
+              <li><a href="https://meet.google.com/new" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center font-semibold text-[var(--accent)] underline">Crear reunión en Google Meet</a> (se abre en otra pestaña con tu cuenta de Google).</li>
+              <li>Copia el enlace de la reunión (termina como <span className="font-mono">abc-defg-hij</span>) y pégalo aquí:</li>
+            </ol>
+            <input name="url" type="url" aria-label="Enlace de la reunión" className="w-full rounded-lg border border-[var(--border)] bg-transparent p-2" placeholder="https://meet.google.com/abc-defg-hij" />
+            <p className="text-xs text-[var(--muted)]">También sirven enlaces de {CALL_HOSTS.filter((h) => h !== "meet.google.com").join(", ")}.</p>
+          </div>
+          <label className="flex min-h-11 items-center gap-2 text-sm"><input type="checkbox" name="generate" /> No tengo cuenta de Google: generar una sala de Jitsi nueva (sin cuenta)</label>
           <label className="block text-sm">Nota (opcional)<input name="note" maxLength={300} className="mt-1 w-full rounded-lg border border-[var(--border)] bg-transparent p-2" /></label>
         </ActionForm>)}
     </div>

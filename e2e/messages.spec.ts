@@ -68,3 +68,32 @@ test("un entrenador ajeno no puede abrir la conversación de otro", async ({ bro
   expect(res?.status()).toBe(404);
   await ctx.close();
 });
+
+test("videollamada con Google Meet: el entrenador crea la sala y pega el enlace; un enlace que no es de sala se explica; el alumno ve el botón para unirse", async ({ browser }) => {
+  const tctx = await browser.newContext(), cctx = await browser.newContext();
+  const tp = await tctx.newPage(), cp = await cctx.newPage();
+  await login(tp, w.trainerEmail); await login(cp, w.clientEmail);
+  await tp.goto(`/trainer/clients/${w.clientId}/messages`);
+
+  const meetLink = tp.getByRole("link", { name: "Crear reunión en Google Meet" });
+  await expect(meetLink).toHaveAttribute("href", "https://meet.google.com/new");
+  await expect(meetLink).toHaveAttribute("target", "_blank");
+  await expect(meetLink).toHaveAttribute("rel", /noopener/);
+
+  const form = tp.locator("form", { has: tp.getByRole("heading", { name: "Programar videollamada" }) });
+  const future = new Date(Date.now() + 2 * 86_400_000); const pad = (n: number) => String(n).padStart(2, "0");
+  const when = `${future.getFullYear()}-${pad(future.getMonth() + 1)}-${pad(future.getDate())}T10:00`;
+  await form.getByLabel("Fecha y hora (hora local)").fill(when);
+  await form.getByLabel("Enlace de la reunión").fill("https://meet.google.com/new");                       // the "new meeting" page is not a room
+  await form.getByRole("button", { name: "Programar videollamada" }).click();
+  await expect(tp.getByText(/Ese enlace de Meet no es de una sala/)).toBeVisible();
+
+  await form.getByLabel("Enlace de la reunión").fill("https://meet.google.com/abc-defg-hij");
+  await form.getByRole("button", { name: "Programar videollamada" }).click();
+  await expect(tp.getByText("Videollamada programada y enviada al alumno")).toBeVisible();
+
+  await cp.goto("/client/messages");
+  const join = cp.getByRole("link", { name: "Unirme a la videollamada" });
+  await expect(join).toHaveAttribute("href", "https://meet.google.com/abc-defg-hij");
+  await tctx.close(); await cctx.close();
+});
