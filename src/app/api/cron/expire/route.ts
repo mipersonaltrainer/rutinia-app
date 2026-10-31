@@ -5,6 +5,7 @@ import { runSignalAlerts } from "@/lib/ops/signals";
 import { getBillingConfig } from "@/lib/billing/config";
 import { runFxAlert } from "@/lib/billing/fx-alert";
 import { runDueCampaigns, sendBirthdayGreetings } from "@/lib/marketing/send";
+import { runLifecycleEmails } from "@/lib/billing/lifecycle-email";
 
 export const dynamic = "force-dynamic";
 
@@ -23,6 +24,7 @@ export async function GET(req: Request) {
   const fx = await runFxAlert(admin, process.env, getBillingConfig().wompi.enabled && process.env.FX_MONITORING === "on")      // Wompi charges fixed pesos now: the USD→COP rate is only watched when asked for.catch(() => ({ state: "error" as const, sent: false }));
   // Marketing runs after the essentials and can never break them: scheduled campaigns that are due, and the automatic birthday greeting (if the team turned it on).
   const marketing = await (async () => { try { return { campaigns: await runDueCampaigns(admin), birthdays: await sendBirthdayGreetings(admin, { auto: true }) }; } catch { return { error: true }; } })();
+  const lifecycle = await runLifecycleEmails(admin);                       // trial-ending and renewal notices by e-mail; counts only, never breaks the run
   const signals = await runSignalAlerts(admin, process.env);                // counts-only operational alerts; never breaks the run
-  return NextResponse.json({ ok: true, ...data, marketing, signals, reminders: rErr ? { error: true } : reminders, call_reminders: cErr ? { error: true } : calls, fx_alert: fx });
+  return NextResponse.json({ ok: true, ...data, marketing, lifecycle, signals, reminders: rErr ? { error: true } : reminders, call_reminders: cErr ? { error: true } : calls, fx_alert: fx });
 }
