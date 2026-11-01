@@ -27,7 +27,10 @@ export function createAnthropicProvider(cfg: AiConfig, client?: Anthropic): AiPr
         if (e instanceof Anthropic.APIConnectionTimeoutError) throw new AiError("timeout", "El proveedor tardó demasiado.", true);
         if (e instanceof Anthropic.AuthenticationError || e instanceof Anthropic.PermissionDeniedError) throw new AiError("auth", "Credenciales del proveedor inválidas.");
         if (e instanceof Anthropic.RateLimitError) throw new AiError("rate_limited_provider", "El proveedor está limitando las solicitudes.", true);
-        if (e instanceof Anthropic.APIError) throw new AiError("provider_error", `Error del proveedor (${e.status ?? "red"}).`, (e.status ?? 500) >= 500);
+        if (e instanceof Anthropic.APIError) {
+          const t = (e.error as { error?: { type?: unknown } } | undefined)?.error?.type;   // Anthropic's fixed error label (e.g. not_found_error): names the cause, never echoes provider prose
+          throw new AiError("provider_error", `Error del proveedor (${e.status ?? "red"}${typeof t === "string" && /^[a-z_]{3,40}$/.test(t) ? ` ${t}` : ""}).`, (e.status ?? 500) >= 500);
+        }
         throw new AiError("provider_error", "No se pudo contactar al proveedor.", true);
       }
     },
