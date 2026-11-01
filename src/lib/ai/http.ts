@@ -15,6 +15,11 @@ export async function postJson(url: string, headers: Record<string, string>, bod
   finally { clearTimeout(timer); }
   if (res.status === 401 || res.status === 403) throw new AiError("auth", "Credenciales del proveedor inválidas.");
   if (res.status === 429) throw new AiError("rate_limited_provider", "El proveedor está limitando las solicitudes.", true);
-  if (!res.ok) throw new AiError("provider_error", `Error del proveedor (${res.status}).`, res.status >= 500);
+  if (!res.ok) {
+    // Only Google's fixed error labels (e.g. INVALID_ARGUMENT, API_KEY_INVALID) are kept: they name the cause without echoing prompts, keys or any provider prose.
+    const err = await res.json().then((j) => (j as { error?: { status?: unknown; details?: { reason?: unknown }[] } }).error, () => undefined);
+    const label = [err?.status, err?.details?.find((d) => typeof d?.reason === "string")?.reason].filter((v): v is string => typeof v === "string" && /^[A-Z][A-Z0-9_]{2,40}$/.test(v)).join(" ");
+    throw new AiError("provider_error", `Error del proveedor (${res.status}${label ? ` ${label}` : ""}).`, res.status >= 500);
+  }
   try { return (await res.json()) as Record<string, unknown>; } catch { throw new AiError("invalid_output", "Respuesta del proveedor ilegible."); }
 }

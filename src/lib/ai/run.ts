@@ -56,7 +56,7 @@ export async function runLlm<T, R = unknown>(o: RunOptions<T>): Promise<RunOk<R>
     else { out = checked.data; inter = "ok"; status = "ok"; }
   } catch (e) {
     const code = e instanceof AiError ? e.code : "provider_error";
-    console.error("[ai]", code, e instanceof AiError ? e.message : e instanceof Error ? e.name : "unknown");   // codes and our own messages only: never provider text, prompts or personal data
+    console.error("[ai]", `${provider.name}/${provider.model}`, code, e instanceof AiError ? e.message : e instanceof Error ? e.name : "unknown");   // provider/model, codes and our own messages only: never provider text, prompts or personal data
     fail = { ok: false, code, message: ERR[code] ?? ERR.provider_error };
   }
   const { data: iid } = await (o.finisher ?? createAdminClient()).rpc("ai_finish", { p_usage: usage, p_status: status, p_provider: provider.name, p_model: model, p_in: tokensIn, p_out: tokensOut, p_ms: Date.now() - t0, p_client: o.clientId, p_digest: o.digest, p_output: out, p_violations: violations, p_flags: o.flags, p_inter_status: inter });
