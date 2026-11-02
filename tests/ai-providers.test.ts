@@ -22,6 +22,15 @@ describe("configuración multi-proveedor", () => {
     expect(getAiConfig({ AI_PROVIDER: "otro", ANTHROPIC_API_KEY: "k" }).enabled).toBe(false);
     expect(getAiConfig({ AI_PROVIDER: "gemini", GEMINI_API_KEY: "g", AI_MODEL: "m", AI_ENABLED: "false" }).enabled).toBe(false);
   });
+  it("una clave pegada en AI_MODEL apaga la IA y se avisa sin mostrarla", () => {
+    const key = "AQ.Ab8RN6Kixxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+    expect(getAiConfig({ AI_PROVIDER: "gemini", GEMINI_API_KEY: key, AI_MODEL: key }).enabled).toBe(false);          // igual a la clave
+    expect(getAiConfig({ AI_PROVIDER: "gemini", GEMINI_API_KEY: "otra", AI_MODEL: key }).enabled).toBe(false);       // prefijo de clave
+    expect(getAiConfig({ AI_PROVIDER: "gemini", GEMINI_API_KEY: "g", AI_MODEL: "gemini-flash-lite-latest" }).enabled).toBe(true);
+    expect(getAiConfig({ AI_PROVIDER: "anthropic", ANTHROPIC_API_KEY: "k", AI_MODEL: "claude-opus-5-5" }).enabled).toBe(true);
+    const r = checkEnv({ NODE_ENV: "production", AI_PROVIDER: "gemini", GEMINI_API_KEY: "g", AI_MODEL: key } as never);
+    expect(r.errors.join()).toMatch(/AI_MODEL no parece/); expect(JSON.stringify(r)).not.toContain(key);
+  });
   it("la fábrica devuelve el adaptador correcto", () => {
     expect(createProvider(cfgOf("openai", "m"))?.name).toBe("openai"); expect(createProvider(cfgOf("gemini", "m"))?.name).toBe("gemini");
   });
