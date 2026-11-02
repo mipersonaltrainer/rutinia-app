@@ -1,4 +1,5 @@
 import { parseAlertUrl } from "@/lib/ops/alerts";
+import { modelLooksLikeKey } from "@/lib/ai/provider";
 
 // Production configuration check. Pure (takes the env as an argument) so every rule is testable.
 // Errors stop a production server from starting; warnings are logged. Values are never echoed, only variable names.
@@ -72,6 +73,7 @@ export function checkEnv(env: Env): EnvReport {
     if (!val(env, keyVar[p])) errors.push(`AI_PROVIDER=${p} sin ${keyVar[p]}`);
     if (p !== "anthropic" && !val(env, "AI_MODEL")) errors.push(`AI_PROVIDER=${p} requiere AI_MODEL (el nombre exacto del modelo)`);
   }
+  if (modelLooksLikeKey(val(env, "AI_MODEL"), env)) errors.push("AI_MODEL no parece un nombre de modelo (¿se pegó una clave de API aquí?): corrígela y rota esa clave");
   for (const p of known) if (val(env, keyVar[p]) && named !== p) warnings.push(`${keyVar[p]} definida pero AI_PROVIDER ${aiOn ? `es «${named}»: esa clave no se usa` : "no está configurado: la IA queda apagada"}`);
   if (aiOn && val(env, "AI_ALLOW_SENSITIVE") === "true") warnings.push("AI_ALLOW_SENSITIVE=true: se enviará contexto de salud minimizado a un proveedor externo; confirma contrato/DPA y aviso de privacidad");
   if (val(env, "ANTHROPIC_BASE_URL")) errors.push("ANTHROPIC_BASE_URL está definida: solo debe usarse con el servidor de pruebas local");

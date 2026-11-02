@@ -15,12 +15,19 @@ export const KEY_VAR: Record<AiProviderName, string> = { anthropic: "ANTHROPIC_A
 export interface AiConfig { enabled: boolean; provider: AiProviderName | "none"; model: string; allowSensitive: boolean; maxOutputTokens: number; timeoutMs: number; apiKey: string | null }
 const int = (v: string | undefined, d: number, min: number, max: number) => { const n = Number.parseInt(v ?? "", 10); return Number.isFinite(n) ? Math.min(max, Math.max(min, n)) : d; };
 
+/** A model name is a short public label. A pasted API key (wrong variable) must never be used as one: it would be sent to the provider as a URL/body and printed in logs. */
+export function modelLooksLikeKey(model: string, env: Record<string, string | undefined> = process.env): boolean {
+  if (!model) return false;
+  return Object.values(KEY_VAR).some((k) => env[k]?.trim() === model) || /^(AQ\.|AIza|sk-|sk_|xai-)/.test(model) || model.length > 64 || !/^[A-Za-z0-9][A-Za-z0-9._:/-]*$/.test(model);
+}
+
 export function getAiConfig(env: Record<string, string | undefined> = process.env): AiConfig {
   const named = env.AI_PROVIDER?.trim().toLowerCase();
   const provider = (AI_PROVIDERS as string[]).includes(named ?? "") ? (named as AiProviderName) : "none";
   const apiKey = provider === "none" ? null : env[KEY_VAR[provider]]?.trim() || null;
   // Claude has a built-in default model; for the other providers the operator names the model explicitly (model names change often and are never guessed).
-  const model = env.AI_MODEL?.trim() || (provider === "anthropic" ? "claude-opus-5-5" : "");
+  const named_model = env.AI_MODEL?.trim() || "";
+  const model = modelLooksLikeKey(named_model, env) ? "" : named_model || (provider === "anthropic" ? "claude-opus-5-5" : "");
   return {
     provider, apiKey, model, enabled: provider !== "none" && !!apiKey && !!model && env.AI_ENABLED !== "false",
     allowSensitive: env.AI_ALLOW_SENSITIVE === "true",          // operator attests a legal basis / DPA with the provider exists
